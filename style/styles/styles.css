@@ -748,7 +748,7 @@ footer {
 }
 
 .mobile-menu-inner {
-  padding: 24px 16px 16px; /* логотип и ссылки ближе к верху */
+  padding: 24px 16px 16px;
 }
 
 .mobile-logo-row {
@@ -796,7 +796,7 @@ footer {
   max-width: 260px;
 }
 
-/* MEDIA */
+/* MEDIA – планшеты и ниже */
 
 @media (max-width: 960px) {
   .hero-inner {
@@ -819,15 +819,16 @@ footer {
   }
 }
 
-/* мобайл: в хедере только бургер, меню – полосой сверху */
+/* мобайл: до 768px – только бургер и мобильное меню */
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .header-main {
     padding: 8px 0;
   }
 
+  /* полностью прячем десктопную шапку */
   .header-main-content {
-    display: none;
+    display: none !important;
   }
 
   .header-main-inner {
@@ -838,7 +839,7 @@ footer {
   .burger {
     display: flex;
     position: fixed;
-    top: 14px;   /* чуть ниже, чтобы совпасть по высоте с логотипом */
+    top: 14px;
     right: 14px;
     z-index: 1001;
   }
