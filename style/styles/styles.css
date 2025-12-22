@@ -819,9 +819,9 @@ footer {
   }
 }
 
-/* мобайл: до 768px – только бургер и мобильное меню */
+/* бургер до 1200px (телефоны + планшеты, включая iPad Pro) */
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .header-main {
     padding: 8px 0;
   }
