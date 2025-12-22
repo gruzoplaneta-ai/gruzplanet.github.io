@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <!-- простой бургер из 3 полосок, фиксирован справа -->
+      <!-- бургер из 3 полосок, фиксирован справа -->
       <button class="burger" type="button" aria-label="Открыть меню">
         <span></span>
         <span></span>
@@ -60,7 +60,7 @@
     </div>
   </div>
 
-  <!-- выпадающее мобильное меню: логотип + ссылки + контакты + кнопка -->
+  <!-- выпадающее мобильное меню -->
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-menu-inner">
       <div class="mobile-logo-row">
@@ -131,11 +131,13 @@
           </div>
         </div>
       </div>
+    </div>
 
+    <div class="hero-scroll-hint">
+      <span>Листайте вниз, чтобы узнать больше</span>
     </div>
   </section>
 
-  <!-- остальной контент оставлен без изменений -->
   <!-- ABOUT -->
   <section id="about" class="section-anchor">
     <div class="container">
@@ -202,7 +204,7 @@
         <div>
           <h2>Преимущества компании</h2>
           <p>
-            Перевозите грузы с нами — получаете надежного логистического партнера, который отвечает за сроки и сохранность.
+            Перевозите грузы с нами — получаете надежного логистического партнёра, который отвечает за сроки и сохранность.
             Ниже основные сильные стороны компании.
           </p>
         </div>
@@ -314,23 +316,23 @@
                    alt="Скан письма благодарности 1">
             </div>
             <div class="thumb-img">
-              <img src="https://xn--80aaafepk8atfnh9ae8p.xn--p1ai/wp-content/uploads/2020/11/review-02-min.jpg"
+              <img src="https://xn--80aaafepk8атfnh9ae8p.xn--p1ai/wp-content/uploads/2020/11/review-02-min.jpg"
                    alt="Скан письма благодарности 2">
             </div>
             <div class="thumb-img">
-              <img src="https://xn--80aaafepk8atfnh9ae8p.xn--p1ai/wp-content/uploads/2020/11/review-03-min.jpg"
+              <img src="https://xn--80aaafepk8атfnh9ae8p.xn--p1ai/wp-content/uploads/2020/11/review-03-min.jpg"
                    alt="Скан письма благодарности 3">
             </div>
             <div class="thumb-img">
-              <img src="https://xn--80aaafepk8atfnh9ae8p.xn--p1ai/wp-content/uploads/2018/03/review-04.jpg"
+              <img src="https://xn--80aaafepk8атfnh9ae8p.xn--p1ai/wp-content/uploads/2018/03/review-04.jpg"
                    alt="Скан письма благодарности 4">
             </div>
             <div class="thumb-img">
-              <img src="https://xn--80aaafepk8atfnh9ae8p.xn--p1ai/wp-content/uploads/2018/03/review-05.jpg"
+              <img src="https://xn--80aaafepk8атfnh9ae8p.xn--p1ai/wp-content/uploads/2018/03/review-05.jpg"
                    alt="Скан письма благодарности 5">
             </div>
             <div class="thumb-img">
-              <img src="https://xn--80aaafepk8atfnh9ae8p.xn--p1ai/wp-content/uploads/2020/11/review-06-min.jpg"
+              <img src="https://xn--80aaafepk8атfnh9ae8p.xn--p1ai/wp-content/uploads/2020/11/review-06-min.jpg"
                    alt="Скан письма благодарности 6">
             </div>
           </div>
@@ -380,7 +382,7 @@
                 </select>
               </div>
               <div class="form-group">
-                <label>Вес и объем</label>
+                <label>Вес и объем (по желанию)</label>
                 <input type="text" name="weight" placeholder="Например: 3 т / 12 м³">
               </div>
             </div>
@@ -399,7 +401,7 @@
               <textarea name="comment" placeholder="Укажите особенности груза, желаемые сроки, наличие разгрузки и т.д."></textarea>
             </div>
             <div class="form-row" style="align-items:center; margin-top:6px;">
-              <button type="submit" class="btn-primary">Отправить заявку</button>
+              <button type="submit" class="btn-primary">Отправить и получить расчет</button>
               <span class="form-note">Нажимая кнопку, вы подтверждаете согласие с политикой обработки персональных данных.</span>
             </div>
           </form>
@@ -461,9 +463,9 @@
           <dd>Общество с ограниченной ответственностью «Компания Грузовая Планета»</dd>
 
           <dt>Клиентам</dt>
+          <dd><a href="#" id="policy-link">Политика обработки персональных данных</a></dd>
           <dd><a href="#">Правила перевозки грузов</a></dd>
           <dd><a href="#">Тарифы и условия оплаты</a></dd>
-          <dd><a href="#">Политика обработки персональных данных</a></dd>
         </dl>
       </div>
     </div>
@@ -477,6 +479,130 @@
     <span>Доставка грузов по России и странам СНГ</span>
   </div>
 </footer>
+
+<!-- Модальное окно политики обработки персональных данных -->
+<div class="modal" id="policy-modal" aria-hidden="true">
+  <div class="modal-backdrop"></div>
+  <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="policy-title">
+    <button class="modal-close" type="button" aria-label="Закрыть">×</button>
+    <h2 id="policy-title">Политика обработки персональных данных</h2>
+    <div class="modal-body">
+      <h3>1. Общие положения</h3>
+      <p>
+        Настоящая политика в отношении обработки персональных данных (далее — Политика)
+        действует в отношении всех персональных данных, которые ООО «Компания Грузовая Планета»
+        может получить от пользователей сайта gruzoplaneta.ru (далее — Сайт).
+      </p>
+      <p>
+        Обработка персональных данных осуществляется в соответствии с Федеральным законом
+        от 27.07.2006 № 152‑ФЗ «О персональных данных» и иными нормативными актами Российской Федерации.
+      </p>
+
+      <h3>2. Персональные данные и способы их получения</h3>
+      <p>Через формы на Сайте мы можем получать следующие данные:</p>
+      <ul>
+        <li>ФИО или имя;</li>
+        <li>номер телефона;</li>
+        <li>город отправки и доставки, тип груза, вес и объем;</li>
+        <li>содержание обращения и комментариев;</li>
+        <li>технические данные: IP‑адрес, данные о браузере, cookie в объёме, необходимом для работы Сайта.</li>
+      </ul>
+      <p>
+        Данные предоставляются пользователем добровольно путем заполнения форм на Сайте и/или
+        при обращении по указанным контактам.
+      </p>
+
+      <h3>3. Цели обработки персональных данных</h3>
+      <p>Персональные данные обрабатываются для:</p>
+      <ul>
+        <li>обработки заявок на перевозку грузов и подготовки коммерческих предложений;</li>
+        <li>обратной связи по указанным пользователем контактам;</li>
+        <li>заключения и исполнения договоров перевозки и транспортно‑экспедиционного обслуживания;</li>
+        <li>улучшения работы Сайта и качества сервиса;</li>
+        <li>выполнения требований законодательства Российской Федерации.</li>
+      </ul>
+
+      <h3>4. Правовые основания обработки</h3>
+      <p>
+        Основаниями обработки являются: согласие пользователя, выраженное путем отправки формы на Сайте,
+        а также необходимость обработки для заключения и исполнения договоров, стороной которых является пользователь.
+      </p>
+
+      <h3>5. Принципы и условия обработки</h3>
+      <p>Мы придерживаемся следующих принципов обработки персональных данных:</p>
+      <ul>
+        <li>обработка на законной и справедливой основе;</li>
+        <li>обработка ограничена достижением конкретных, заранее определённых целей;</li>
+        <li>соответствие состава и объёма данных заявленным целям, недопустимость избыточности;</li>
+        <li>обеспечение точности и актуальности данных при необходимости их обновления;</li>
+        <li>хранение не дольше, чем этого требуют цели обработки и закон.</li>
+      </ul>
+      <p>
+        Доступ к персональным данным ограничен и предоставляется только уполномоченным сотрудникам
+        и (при необходимости) подрядчикам, с которыми заключены договоры о конфиденциальности.
+      </p>
+
+      <h3>6. Передача и хранение данных</h3>
+      <p>
+        Персональные данные не передаются третьим лицам, за исключением случаев:
+      </p>
+      <ul>
+        <li>когда передача необходима для исполнения договора с пользователем;</li>
+        <li>по требованию государственных органов в рамках установленной законом процедуры;</li>
+        <li>при передаче обработчикам по договору, предусматривающему обязанности по защите данных.</li>
+      </ul>
+      <p>
+        Срок хранения данных определяется целями обработки, требованиями законодательства и сроками исковой давности,
+        если это необходимо для защиты прав и законных интересов Оператора.
+      </p>
+
+      <h3>7. Защита персональных данных</h3>
+      <p>
+        Оператор принимает необходимые организационные и технические меры для защиты персональных данных от
+        неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения,
+        а также от иных неправомерных действий третьих лиц.
+      </p>
+
+      <h3>8. Права пользователя</h3>
+      <p>Пользователь имеет право:</p>
+      <ul>
+        <li>получать информацию о наличии и содержании своих персональных данных у Оператора;</li>
+        <li>требовать уточнения, блокирования или уничтожения данных, если они являются неполными, устаревшими,
+            неточными или обработаны с нарушением закона;</li>
+        <li>отозвать согласие на обработку персональных данных, направив обращение по указанным контактам;</li>
+        <li>обжаловать действия или бездействие Оператора в Роскомнадзор или в суд.</li>
+      </ul>
+
+      <h3>9. Контакты оператора персональных данных</h3>
+      <p>
+        Оператор персональных данных: ООО «Компания Грузовая Планета».<br>
+        Адрес: 610033, Россия, Кировская область, г. Киров, ул. Московская, д. 107Б, офис 602.<br>
+        Телефон: <a href="tel:+79536964444">8 (953) 696‑44‑44</a><br>
+        E‑mail: <a href="mailto:11@gruzoplaneta.ru">11@gruzoplaneta.ru</a>
+      </p>
+
+      <p style="font-size:12px; color:#6b7280; margin-top:8px;">
+        Отправляя форму на Сайте, вы подтверждаете, что ознакомились с настоящей Политикой
+        и даёте согласие на обработку своих персональных данных на указанных условиях.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Cookie‑баннер -->
+<div class="cookie-banner" id="cookie-banner" aria-hidden="true">
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-text">
+      Мы используем файлы cookie, чтобы улучшить работу сайта и анализировать трафик
+      (например, через Яндекс Метрику или Google Analytics). Вы можете принять или
+      отклонить использование таких cookie, кроме необходимых для работы сайта.
+    </div>
+    <div class="cookie-banner-actions">
+      <button type="button" class="btn-ghost cookie-btn" id="cookie-reject">Отклонить</button>
+      <button type="button" class="btn-primary cookie-btn" id="cookie-accept">Принять</button>
+    </div>
+  </div>
+</div>
 
 <script>
   document.getElementById('logo-link')?.addEventListener('click', function (e) {
@@ -542,11 +668,90 @@
     });
   }
 
+  function setupPolicyModal() {
+    const link = document.getElementById('policy-link');
+    const modal = document.getElementById('policy-modal');
+    if (!link || !modal) return;
+
+    const closeBtn = modal.querySelector('.modal-close');
+    const backdrop = modal.querySelector('.modal-backdrop');
+
+    const open = () => {
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      modal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    };
+
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      open();
+    });
+
+    closeBtn?.addEventListener('click', close);
+    backdrop?.addEventListener('click', close);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  }
+
+  const COOKIE_CONSENT_KEY = 'cookie_consent_v1';
+
+  function hasCookieConsent() {
+    return localStorage.getItem(COOKIE_CONSENT_KEY);
+  }
+
+  function setCookieConsent(value) {
+    localStorage.setItem(COOKIE_CONSENT_KEY, value);
+  }
+
+  function setupCookieBanner() {
+    const banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+
+    const btnAccept = document.getElementById('cookie-accept');
+    const btnReject = document.getElementById('cookie-reject');
+
+    if (!hasCookieConsent()) {
+      banner.classList.add('is-visible');
+    }
+
+    const hide = () => {
+      banner.classList.remove('is-visible');
+    };
+
+    btnAccept?.addEventListener('click', () => {
+      setCookieConsent('accepted');
+      hide();
+      enableAnalytics();
+    });
+
+    btnReject?.addEventListener('click', () => {
+      setCookieConsent('rejected');
+      hide();
+    });
+  }
+
+  function enableAnalytics() {
+    // сюда можно добавить подключение Яндекс Метрики / Google Analytics после согласия
+    // пример кода Метрики оставь закомментированным и подставь свой ID при необходимости
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     setupSmoothAnchorLinks();
     fillExperience();
     fillYear();
     setupBurger();
+    setupPolicyModal();
+    setupCookieBanner();
+
+    if (hasCookieConsent() === 'accepted') {
+      enableAnalytics();
+    }
   });
 </script>
 
