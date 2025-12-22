@@ -92,7 +92,7 @@
 <main>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero section-animated">
     <div class="container hero-inner">
       <div>
         <div class="hero-label">Доставляем грузы по России и из Китая</div>
@@ -111,35 +111,51 @@
           <a href="#about" class="btn-ghost scroll-link">О компании</a>
         </div>
         <div class="hero-note">Менеджер свяжется с вами в рабочее время в течение 15–30 минут.</div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <strong>1 место</strong>
-            среди транспортных компаний Кировской области
-          </div>
-          <div class="hero-stat">
-            <strong>ТОП‑10</strong>
-            транспортно‑экспедиционных компаний России
-          </div>
-        </div>
       </div>
 
       <div class="hero-right">
-        <div class="hero-image">
-          <img src="style/images/sitrak1.jpg" alt="Грузовой автомобиль на погрузке">
-          <div class="hero-image-badge">
-            Доставляем грузы из Китая в Россию, по России и в страны СНГ
+        <div class="hero-carousel" id="hero-carousel">
+          <div class="hero-slide is-active">
+            <img src="style/images/sitrak1.jpg" alt="Грузовой автомобиль на погрузке 1">
+            <div class="hero-image-badge">
+              Доставляем грузы из Китая в Россию, по России и в страны СНГ
+            </div>
+          </div>
+          <div class="hero-slide">
+            <img src="style/images/sitrak2.jpg" alt="Грузовой автомобиль на погрузке 2">
+            <div class="hero-image-badge">
+              Магистральные перевозки по всей России
+            </div>
+          </div>
+          <div class="hero-slide">
+            <img src="style/images/sitrak3.jpg" alt="Грузовой автомобиль на погрузке 3">
+            <div class="hero-image-badge">
+              Оптимальные маршруты и контроль доставки
+            </div>
+          </div>
+          <div class="hero-slide">
+            <img src="style/images/sitrak4.jpg" alt="Грузовой автомобиль на погрузке 4">
+            <div class="hero-image-badge">
+              Современный автопарк и опытные водители
+            </div>
+          </div>
+
+          <button class="hero-carousel-arrow hero-carousel-prev" type="button" aria-label="Предыдущий слайд">‹</button>
+          <button class="hero-carousel-arrow hero-carousel-next" type="button" aria-label="Следующий слайд">›</button>
+
+          <div class="hero-dots" aria-hidden="true">
+            <button type="button" class="hero-dot is-active" data-index="0"></button>
+            <button type="button" class="hero-dot" data-index="1"></button>
+            <button type="button" class="hero-dot" data-index="2"></button>
+            <button type="button" class="hero-dot" data-index="3"></button>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="hero-scroll-hint">
-      <span>Листайте вниз, чтобы узнать больше</span>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="section-anchor">
+  <section id="about" class="section-anchor section-animated">
     <div class="container">
       <div class="section-header">
         <div>
@@ -198,7 +214,7 @@
     </div>
   </section>
 
-  <section id="advances" class="section-anchor">
+  <section id="advances" class="section-anchor section-animated">
     <div class="container">
       <div class="section-header">
         <div>
@@ -221,7 +237,7 @@
     </div>
   </section>
 
-  <section id="map" class="section-anchor">
+  <section id="map" class="section-anchor section-animated">
     <div class="container">
       <div class="section-header">
         <div>
@@ -257,7 +273,7 @@
     </div>
   </section>
 
-  <section id="partners" class="section-anchor">
+  <section id="partners" class="section-anchor section-animated">
     <div class="container">
       <div class="section-header">
         <div>
@@ -278,7 +294,7 @@
     </div>
   </section>
 
-  <section id="reviews" class="section-anchor">
+  <section id="reviews" class="section-anchor section-animated">
     <div class="container">
       <div class="section-header">
         <div>
@@ -312,7 +328,7 @@
           <div class="badge">Скан‑копии отзывов</div>
           <div class="thumbs">
             <div class="thumb-img">
-              <img src="https://xn--80aaafepk8atfnh9ae8p.xn--p1ai/wp-content/uploads/2020/11/review-01-min.jpg"
+              <img src="https://xn--80aaafepk8атfnh9ae8p.xn--p1ai/wp-content/uploads/2020/11/review-01-min.jpg"
                    alt="Скан письма благодарности 1">
             </div>
             <div class="thumb-img">
@@ -344,7 +360,7 @@
     </div>
   </section>
 
-  <section id="request" class="section-anchor">
+  <section id="request" class="section-anchor section-animated">
     <div class="container">
       <div class="section-header">
         <h2>Поехали с нами</h2>
@@ -362,11 +378,11 @@
             <div class="form-row">
               <div class="form-group">
                 <label>Город отправки</label>
-                <input type="text" name="from" placeholder="Например: Киров">
+                <input type="text" name="from" placeholder="Например: Киров" autocomplete="address-level2">
               </div>
               <div class="form-group">
                 <label>Город доставки</label>
-                <input type="text" name="to" placeholder="Например: Москва">
+                <input type="text" name="to" placeholder="Например: Москва" autocomplete="address-level2">
               </div>
             </div>
             <div class="form-row">
@@ -389,11 +405,20 @@
             <div class="form-row">
               <div class="form-group">
                 <label>Ваш телефон</label>
-                <input type="tel" name="phone" placeholder="+7 (___) ___‑__‑__" required>
+                <input
+                  type="tel"
+                  id="phone-input"
+                  class="phone-input"
+                  name="phone"
+                  placeholder="+7 (___) ___‑__‑__"
+                  required
+                  autocomplete="tel"
+                >
+                <div class="input-hint">Формат: +7 999 123‑45‑67</div>
               </div>
               <div class="form-group">
                 <label>Имя</label>
-                <input type="text" name="name" placeholder="Как к вам обращаться?">
+                <input type="text" name="name" placeholder="Как к вам обращаться?" autocomplete="name">
               </div>
             </div>
             <div class="form-group">
@@ -413,7 +438,7 @@
             <div style="position:relative;overflow:hidden;">
               <a href="https://yandex.ru/maps/46/kirov/?utm_medium=mapframe&utm_source=maps"
                  style="color:#eee;font-size:12px;position:absolute;top:0px;">Киров</a>
-              <a href="https://yandex.ru/maps/46/kirov/house/moskovskaya_ulitsa_107b/YEAYcAVpS0AGQFtifXpxcn9qbA==/?ll=49.629565%2C58.603292&utm_medium=mapframe&utm_source=maps&z=19.95"
+              <a href="https://yandex.ru/maps/46/kiров/house/moskovskaya_ulitsa_107b/YEAYcAVpS0AGQFtifXpxcn9qbA==/?ll=49.629565%2C58.603292&utm_medium=mapframe&utm_source=maps&z=19.95"
                  style="color:#eee;font-size:12px;position:absolute;top:14px;">Московская улица, 107Б — Яндекс Карты</a>
               <iframe src="https://yandex.ru/map-widget/v1/?ll=49.629565%2C58.603292&mode=whatshere&whatshere%5Bpoint%5D=49.629067%2C58.603381&whatshere%5Bzoom%5D=17&z=19.95"
                       width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
@@ -425,7 +450,7 @@
     </div>
   </section>
 
-  <section id="contacts" class="section-anchor">
+  <section id="contacts" class="section-anchor section-animated">
     <div class="container">
       <div class="section-header">
         <h2>Контакты и реквизиты</h2>
@@ -738,7 +763,186 @@
 
   function enableAnalytics() {
     // сюда можно добавить подключение Яндекс Метрики / Google Analytics после согласия
-    // пример кода Метрики оставь закомментированным и подставь свой ID при необходимости
+  }
+
+  function setupHeroCarousel() {
+    const carousel = document.getElementById('hero-carousel');
+    if (!carousel) return;
+
+    const slides = Array.from(carousel.querySelectorAll('.hero-slide'));
+    const dots = Array.from(carousel.querySelectorAll('.hero-dot'));
+    const btnPrev = carousel.querySelector('.hero-carousel-prev');
+    const btnNext = carousel.querySelector('.hero-carousel-next');
+
+    if (slides.length === 0) return;
+
+    let current = 0;
+    let timer = null;
+    const AUTO_INTERVAL = 5000;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('is-active', i === index);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === index);
+      });
+      current = index;
+    }
+
+    function nextSlide() {
+      const next = (current + 1) % slides.length;
+      showSlide(next);
+    }
+
+    function prevSlide() {
+      const prev = (current - 1 + slides.length) % slides.length;
+      showSlide(prev);
+    }
+
+    function startAuto() {
+      stopAuto();
+      timer = setInterval(nextSlide, AUTO_INTERVAL);
+    }
+
+    function stopAuto() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    btnNext?.addEventListener('click', () => {
+      nextSlide();
+      startAuto();
+    });
+
+    btnPrev?.addEventListener('click', () => {
+      prevSlide();
+      startAuto();
+    });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = Number(dot.dataset.index || 0);
+        showSlide(index);
+        startAuto();
+      });
+    });
+
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+
+    showSlide(0);
+    startAuto();
+  }
+
+  function setupSectionReveal() {
+    const sections = document.querySelectorAll('.section-animated');
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    sections.forEach(sec => observer.observe(sec));
+  }
+
+  function setupPhoneMask() {
+    const input = document.getElementById('phone-input');
+    if (!input) return;
+
+    function cleanDigits(value) {
+      return value.replace(/\D/g, '');
+    }
+
+    function formatPhone(value) {
+      let digits = cleanDigits(value);
+
+      // нормализуем начало: 8, 7 или 9
+      if (digits.startsWith('8')) {
+        digits = '7' + digits.slice(1);
+      } else if (digits.startsWith('7')) {
+        // ok
+      } else if (digits.startsWith('9')) {
+        digits = '7' + digits;
+      }
+
+      digits = digits.slice(0, 11); // максимум 11 цифр
+
+      if (!digits) return '';
+
+      // ожидаем 7 XXX XXX XX XX
+      const d = digits.padEnd(11, '_');
+
+      const p1 = d.slice(1, 4);   // код
+      const p2 = d.slice(4, 7);   // следующая тройка
+      const p3 = d.slice(7, 9);   // первая пара
+      const p4 = d.slice(9, 11);  // вторая пара
+
+      let result = '+7';
+
+      if (digits.length === 1) {
+        result += ' (';
+        return result;
+      }
+
+      const len = digits.length;
+
+      // код оператора
+      result += ' (' + p1.replace(/_/g, '');
+      if (len >= 4) result += ')';
+
+      // первая тройка
+      if (len > 4) {
+        result += ' ' + p2.replace(/_/g, '');
+      }
+
+      // первая пара
+      if (len > 7) {
+        result += '-' + p3.replace(/_/g, '');
+      }
+
+      // вторая пара
+      if (len > 9) {
+        result += '-' + p4.replace(/_/g, '');
+      }
+
+      return result;
+    }
+
+    function onInput(e) {
+      const digits = cleanDigits(e.target.value);
+      if (!digits) {
+        e.target.value = '';
+        return;
+      }
+      e.target.value = formatPhone(digits);
+    }
+
+    function onFocus(e) {
+      if (!e.target.value) {
+        e.target.value = '+7 (';
+      }
+    }
+
+    function onBlur(e) {
+      const digits = cleanDigits(e.target.value);
+      if (digits.length < 11) {
+        e.target.value = '';
+      }
+    }
+
+    input.addEventListener('input', onInput);
+    input.addEventListener('focus', onFocus);
+    input.addEventListener('blur', onBlur);
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -748,10 +952,12 @@
     setupBurger();
     setupPolicyModal();
     setupCookieBanner();
-
     if (hasCookieConsent() === 'accepted') {
       enableAnalytics();
     }
+    setupHeroCarousel();
+    setupSectionReveal();
+    setupPhoneMask();
   });
 </script>
 
