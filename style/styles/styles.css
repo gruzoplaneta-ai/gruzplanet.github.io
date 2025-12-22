@@ -46,6 +46,8 @@ img {
   padding: 0 16px;
 }
 
+/* HEADER */
+
 header {
   border-bottom: 1px solid var(--border-light);
   background: #ffffff;
@@ -86,20 +88,25 @@ header {
   flex-wrap: wrap;
 }
 
+.header-main-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 .logo-block {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.logo-mark {
-  display: none;
-}
-
 .logo-image {
   height: 60px;
   width: auto;
 }
+
+/* desktop nav */
 
 nav {
   display: flex;
@@ -116,6 +123,37 @@ nav a {
 nav a:hover {
   color: var(--accent);
 }
+
+/* BURGER – синий фон, 3 вертикальные белые полоски */
+
+.burger {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
+  box-shadow: 0 4px 10px rgba(21,101,192,0.35);
+  cursor: pointer;
+}
+
+.burger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 999px;
+}
+
+.burger span + span {
+  margin-top: 4px;
+}
+
+/* PHONE BLOCK */
 
 .phone-block {
   text-align: right;
@@ -143,7 +181,7 @@ nav a:hover {
   padding: 8px 14px;
 }
 
-/* Buttons */
+/* BUTTONS */
 
 .btn-primary {
   display: inline-flex;
@@ -254,7 +292,6 @@ nav a:hover {
   color: #bfdbfe;
 }
 
-/* убрать вторую точку на вложенном span */
 .hero-list span span::before {
   content: none;
 }
@@ -291,11 +328,14 @@ nav a:hover {
   color: #ffffff;
 }
 
+/* hero image */
+
 .hero-right {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  justify-content: center;
+  height: 320px;
 }
 
 .hero-image {
@@ -305,7 +345,7 @@ nav a:hover {
   box-shadow: var(--shadow-soft);
   border: 1px solid rgba(21, 101, 192, 0.15);
   background: #000;
-  min-height: 240px; /* уменьшили высоту */
+  height: 100%;
 }
 
 .hero-image img {
@@ -327,10 +367,14 @@ nav a:hover {
   max-width: 80%;
 }
 
-/* Sections */
+/* SECTIONS */
 
 section {
   padding: 38px 0;
+}
+
+.section-anchor {
+  scroll-margin-top: 130px;
 }
 
 section:nth-of-type(even) {
@@ -364,27 +408,12 @@ section:nth-of-type(even) {
   max-width: 520px;
 }
 
+/* NUMBERS */
+
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-}
-
-.card {
-  padding: 16px 14px;
-  border-radius: 10px;
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-}
-
-.card h3 {
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.card p {
-  font-size: 14px;
-  color: var(--text-muted);
 }
 
 .badge {
@@ -411,18 +440,28 @@ section:nth-of-type(even) {
   min-width: 130px;
 }
 
-.numbers-item strong {
+.numbers-main {
   display: block;
   font-size: 20px;
+  font-weight: 800;
   color: var(--accent-dark);
 }
 
-.numbers-item span {
+.numbers-main span,
+#years-experience-2 {
+  color: var(--accent-dark) !important;
+}
+
+.numbers-main--years #years-experience-2 {
+  font-size: 21px;
+}
+
+.numbers-item span:last-child {
   font-size: 13px;
   color: var(--text-muted);
 }
 
-/* Advantages */
+/* ADVANTAGES */
 
 .advantages-list {
   display: grid;
@@ -440,7 +479,7 @@ section:nth-of-type(even) {
   list-style: none;
 }
 
-/* Map / geography */
+/* MAP */
 
 .map-block {
   display: grid;
@@ -475,7 +514,7 @@ section:nth-of-type(even) {
   padding-left: 18px;
 }
 
-/* Clients & reviews */
+/* CLIENTS & REVIEWS */
 
 .logos {
   display: flex;
@@ -543,7 +582,7 @@ section:nth-of-type(even) {
   opacity: 0.9;
 }
 
-/* REQUEST grid */
+/* REQUEST */
 
 .request-grid {
   display: grid;
@@ -644,7 +683,7 @@ textarea {
   max-width: 100%;
 }
 
-/* Contacts */
+/* CONTACTS */
 
 .contacts-grid {
   display: grid;
@@ -684,7 +723,7 @@ textarea {
   margin-left: 0;
 }
 
-/* Footer */
+/* FOOTER */
 
 footer {
   border-top: 1px solid var(--border-light);
@@ -702,7 +741,62 @@ footer {
   flex-wrap: wrap;
 }
 
-/* Media */
+/* MOBILE MENU (overlay-бар сверху) */
+
+.mobile-menu {
+  display: none;
+}
+
+.mobile-menu-inner {
+  padding: 24px 16px 16px; /* логотип и ссылки ближе к верху */
+}
+
+.mobile-logo-row {
+  margin-bottom: 10px;
+}
+
+.mobile-logo {
+  height: 40px;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.mobile-nav a {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+.mobile-contacts {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.mobile-phone-main {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent);
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.mobile-phone-sub a {
+  color: var(--accent);
+}
+
+/* кнопка заявки в мобильном меню не на всю ширину */
+
+.mobile-cta {
+  margin-top: 10px;
+  align-self: flex-start;
+  max-width: 260px;
+}
+
+/* MEDIA */
 
 @media (max-width: 960px) {
   .hero-inner {
@@ -725,28 +819,66 @@ footer {
   }
 }
 
+/* мобайл: в хедере только бургер, меню – полосой сверху */
+
 @media (max-width: 640px) {
-  nav {
+  .header-main {
+    padding: 8px 0;
+  }
+
+  .header-main-content {
     display: none;
   }
-  .hero {
-    padding-top: 20px;
+
+  .header-main-inner {
+    position: relative;
+    justify-content: flex-end;
   }
+
+  .burger {
+    display: flex;
+    position: fixed;
+    top: 14px;   /* чуть ниже, чтобы совпасть по высоте с логотипом */
+    right: 14px;
+    z-index: 1001;
+  }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(15,23,42,0.2);
+    border-bottom: 1px solid var(--border-light);
+    z-index: 1000;
+    max-height: 340px;
+    overflow-y: auto;
+  }
+
+  .mobile-menu.is-open {
+    display: block;
+  }
+
+  .top-bar-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero {
+    padding-top: 24px;
+  }
+
   .hero-title {
     font-size: 24px;
   }
+
   .grid-3,
   .advantages-list {
     grid-template-columns: minmax(0, 1fr);
   }
-  .top-bar-inner,
-  .header-main-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .phone-block {
-    text-align: left;
-  }
+
   .map-inline-frame iframe {
     width: 100%;
     height: 260px;
