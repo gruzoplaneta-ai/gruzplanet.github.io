@@ -5,10 +5,7 @@
   <title>Грузовая Планета – доставка грузов по России и СНГ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Транспортная компания «Грузовая Планета» – автоперевозки по России, из Китая и в страны СНГ. Стаж работы считается автоматически.">
-
-  <!-- Иконка вкладки PNG -->
   <link rel="icon" type="image/png" href="style/images/icon.png">
-
   <link rel="stylesheet" href="style/styles/styles.css">
 </head>
 <body>
@@ -22,27 +19,71 @@
   </div>
   <div class="header-main">
     <div class="container header-main-inner">
-      <div class="logo-block">
-        <a href="#" id="logo-link" aria-label="Грузовая Планета – транспортная компания">
-          <img src="style/images/logo-prozr.jpg" alt="Грузовая Планета – транспортная компания" class="logo-image">
-        </a>
+
+      <!-- логотип, меню, контакты – десктопная часть хедера -->
+      <div class="header-main-content">
+        <div class="logo-block">
+          <a href="#" id="logo-link" aria-label="Грузовая Планета – транспортная компания">
+            <img src="style/images/logo-prozr.jpg" alt="Грузовая Планета – транспортная компания" class="logo-image">
+          </a>
+        </div>
+
+        <nav id="main-nav">
+          <a href="#about">О компании</a>
+          <a href="#advances">Преимущества</a>
+          <a href="#map">Карта доставки</a>
+          <a href="#partners">Клиенты</a>
+          <a href="#reviews">Отзывы</a>
+          <a href="#contacts">Контакты</a>
+        </nav>
+
+        <div class="phone-block">
+          <a href="tel:+79536964444">8 (953) 696‑44‑44</a>
+          <small>
+            Отделы продаж:
+            <a href="tel:+79630001745">+7 (963) 000‑17‑45</a> •
+            <a href="mailto:11@gruzoplaneta.ru">11@gruzoplaneta.ru</a><br>
+            <a href="tel:+79226621440">+7 (922) 662‑14‑40</a> •
+            <a href="mailto:13@gruzoplaneta.ru">13@gruzoplaneta.ru</a>
+          </small><br>
+          <a href="#request" class="btn-primary scroll-link">Заявка на груз</a>
+        </div>
       </div>
-      <nav id="main-nav">
-        <a href="#about">О компании</a>
-        <a href="#advances">Преимущества</a>
-        <a href="#map">Карта доставки</a>
-        <a href="#partners">Клиенты</a>
-        <a href="#reviews">Отзывы</a>
-        <a href="#contacts">Контакты</a>
+
+      <!-- простой бургер из 3 полосок, фиксирован справа -->
+      <button class="burger" type="button" aria-label="Открыть меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- выпадающее мобильное меню: логотип + ссылки + контакты + кнопка -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-inner">
+      <div class="mobile-logo-row">
+        <img src="style/images/logo-prozr.jpg" alt="Грузовая Планета – транспортная компания" class="logo-image mobile-logo">
+      </div>
+      <nav class="mobile-nav">
+        <a href="#about" class="mobile-link">О компании</a>
+        <a href="#advances" class="mobile-link">Преимущества</a>
+        <a href="#map" class="mobile-link">Карта доставки</a>
+        <a href="#partners" class="mobile-link">Клиенты</a>
+        <a href="#reviews" class="mobile-link">Отзывы</a>
+        <a href="#contacts" class="mobile-link">Контакты</a>
       </nav>
-      <div class="phone-block">
-        <a href="tel:+79536964444">8 (953) 696‑44‑44</a>
-        <small>
-          Отделы продаж:
-          +7 (963) 000‑17‑45 • <a href="mailto:11@gruzoplaneta.ru">11@gruzoplaneta.ru</a><br>
-          +7 (922) 662‑14‑40 • <a href="mailto:13@gruzoplaneta.ru">13@gruzoplaneta.ru</a>
-        </small><br>
-        <a href="#request" class="btn-primary scroll-link">Заявка на груз</a>
+      <div class="mobile-contacts">
+        <a href="tel:+79536964444" class="mobile-phone-main">8 (953) 696‑44‑44</a>
+        <div class="mobile-phone-sub">
+          <span>Отделы продаж:</span><br>
+          <a href="tel:+79630001745">+7 (963) 000‑17‑45</a> •
+          <a href="mailto:11@gruzoplaneta.ru">11@gruzoplaneta.ru</a><br>
+          <a href="tel:+79226621440">+7 (922) 662‑14‑40</a> •
+          <a href="mailto:13@gruzoplaneta.ru">13@gruzoplaneta.ru</a>
+        </div>
+        <a href="#request" class="btn-primary mobile-cta scroll-link">Заявка на груз</a>
       </div>
     </div>
   </div>
@@ -84,8 +125,7 @@
 
       <div class="hero-right">
         <div class="hero-image">
-          <img src="style/images/sitrak1.jpg"
-               alt="Грузовой автомобиль на погрузке">
+          <img src="style/images/sitrak1.jpg" alt="Грузовой автомобиль на погрузке">
           <div class="hero-image-badge">
             Доставляем грузы из Китая в Россию, по России и в страны СНГ
           </div>
@@ -95,15 +135,18 @@
     </div>
   </section>
 
+  <!-- остальной контент оставлен без изменений -->
   <!-- ABOUT -->
-  <section id="about">
+  <section id="about" class="section-anchor">
     <div class="container">
       <div class="section-header">
-        <h2>О компании</h2>
-        <p>
-          ООО «Компания Грузовая Планета» работает на рынке транспортно‑экспедиционных услуг с 2010 года.
-          Помогаем бизнесу развиваться за счет надежной и предсказуемой логистики.
-        </p>
+        <div>
+          <h2>О компании</h2>
+          <p>
+            ООО «Компания Грузовая Планета» работает на рынке транспортно‑экспедиционных услуг с 2010 года.
+            Помогаем бизнесу развиваться за счет надежной и предсказуемой логистики.
+          </p>
+        </div>
       </div>
 
       <div class="grid-3">
@@ -132,34 +175,37 @@
 
       <div class="numbers">
         <div class="numbers-item">
-          <strong><span id="years-experience-2"></span> лет</strong>
+          <span class="numbers-main numbers-main--years">
+            <span id="years-experience-2"></span> лет
+          </span>
           <span>на рынке грузоперевозок</span>
         </div>
         <div class="numbers-item">
-          <strong>1500 тонн</strong>
+          <span class="numbers-main">1500 тонн</span>
           <span>отгружаем ежедневно</span>
         </div>
         <div class="numbers-item">
-          <strong>1000+</strong>
+          <span class="numbers-main">1000+</span>
           <span>долгосрочных договоров</span>
         </div>
         <div class="numbers-item">
-          <strong>24/7</strong>
+          <span class="numbers-main">24/7</span>
           <span>информационная поддержка</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ADVANTAGES -->
-  <section id="advances">
+  <section id="advances" class="section-anchor">
     <div class="container">
       <div class="section-header">
-        <h2>Преимущества компании</h2>
-        <p>
-          Перевозите грузы с нами — получаете надежного логистического партнера, который отвечает за сроки и сохранность.
-          Ниже основные сильные стороны компании.
-        </p>
+        <div>
+          <h2>Преимущества компании</h2>
+          <p>
+            Перевозите грузы с нами — получаете надежного логистического партнера, который отвечает за сроки и сохранность.
+            Ниже основные сильные стороны компании.
+          </p>
+        </div>
       </div>
 
       <ul class="advantages-list">
@@ -173,15 +219,16 @@
     </div>
   </section>
 
-  <!-- MAP (география перевозок) -->
-  <section id="map">
+  <section id="map" class="section-anchor">
     <div class="container">
       <div class="section-header">
-        <h2>Карта доставки грузов</h2>
-        <p>
-          Транспортная компания «Грузовая Планета» осуществляет доставку в города России, а также в Белоруссию,
-          Казахстан, Киргизию и Армению. Подбираем оптимальный маршрут под ваш груз.
-        </p>
+        <div>
+          <h2>Карта доставки грузов</h2>
+          <p>
+            Транспортная компания «Грузовая Планета» осуществляет доставку в города России, а также в Белоруссию,
+            Казахстан, Киргизию и Армению. Подбираем оптимальный маршрут под ваш груз.
+          </p>
+        </div>
       </div>
 
       <div class="map-block">
@@ -208,15 +255,16 @@
     </div>
   </section>
 
-  <!-- CLIENTS -->
-  <section id="partners">
+  <section id="partners" class="section-anchor">
     <div class="container">
       <div class="section-header">
-        <h2>Среди наших клиентов</h2>
-        <p>
-          С нами работают производственные компании, оптовые дистрибьюторы, строительные организации и представители
-          розничной торговли. Многие сотрудничают на постоянной основе.
-        </p>
+        <div>
+          <h2>Среди наших клиентов</h2>
+          <p>
+            С нами работают производственные компании, оптовые дистрибьюторы, строительные организации и представители
+            розничной торговли. Многие сотрудничают на постоянной основе.
+          </p>
+        </div>
       </div>
       <div class="logos">
         <span class="logo-pill">Производственные предприятия</span>
@@ -228,15 +276,16 @@
     </div>
   </section>
 
-  <!-- REVIEWS -->
-  <section id="reviews">
+  <section id="reviews" class="section-anchor">
     <div class="container">
       <div class="section-header">
-        <h2>Отзывы и благодарности</h2>
-        <p>
-          Клиенты отмечают ответственность, оперативность и аккуратное обращение с грузом. Ниже — выдержки из писем
-          и миниатюры оригинальных отзывов.
-        </p>
+        <div>
+          <h2>Отзывы и благодарности</h2>
+          <p>
+            Клиенты отмечают ответственность, оперативность и аккуратное обращение с грузом. Ниже — выдержки из писем
+            и миниатюры оригинальных отзывов.
+          </p>
+        </div>
       </div>
 
       <div class="reviews-grid">
@@ -293,15 +342,13 @@
     </div>
   </section>
 
-  <!-- REQUEST + MAP INLINE -->
-  <section id="request">
+  <section id="request" class="section-anchor">
     <div class="container">
       <div class="section-header">
         <h2>Поехали с нами</h2>
       </div>
 
       <div class="request-grid">
-        <!-- Левая колонка: форма -->
         <div class="cta-card">
           <div class="cta-text-top">
             Вам нужно перевезти груз? Оставьте заявку — менеджер свяжется с вами, уточнит детали и предложит удобный
@@ -358,7 +405,6 @@
           </form>
         </div>
 
-        <!-- Правая колонка: Мы на карте -->
         <div class="map-inline-card">
           <h3>Мы на карте</h3>
           <div class="map-inline-frame">
@@ -377,8 +423,7 @@
     </div>
   </section>
 
-  <!-- CONTACTS -->
-  <section id="contacts">
+  <section id="contacts" class="section-anchor">
     <div class="container">
       <div class="section-header">
         <h2>Контакты и реквизиты</h2>
@@ -397,8 +442,10 @@
 
           <p>
             Отделы продаж:<br>
-            +7 (963) 000‑17‑45 • <a href="mailto:11@gruzoplaneta.ru">11@gruzoplaneta.ru</a><br>
-            +7 (922) 662‑14‑40 • <a href="mailto:13@gruzoplaneta.ru">13@gruzoplaneta.ru</a>
+            <a href="tel:+79630001745">+7 (963) 000‑17‑45</a> •
+            <a href="mailto:11@gruzoplaneta.ru">11@gruzoplaneta.ru</a><br>
+            <a href="tel:+79226621440">+7 (922) 662‑14‑40</a> •
+            <a href="mailto:13@gruzoplaneta.ru">13@gruzoplaneta.ru</a>
           </p>
         </div>
 
@@ -432,16 +479,14 @@
 </footer>
 
 <script>
-  // плавный скролл наверх по клику на логотип
   document.getElementById('logo-link')?.addEventListener('click', function (e) {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // плавный скролл для пунктов меню и кнопок заявки / О компании
   function setupSmoothAnchorLinks() {
     const links = document.querySelectorAll(
-      'nav a[href^="#"], a.scroll-link[href^="#"]'
+      'nav a[href^="#"], .mobile-nav a[href^="#"], a.scroll-link[href^="#"]'
     );
     links.forEach(link => {
       link.addEventListener('click', function (e) {
@@ -456,9 +501,8 @@
     });
   }
 
-  // стаж с 20.09.2010
   function fillExperience() {
-    const start = new Date(2010, 8, 20); // сентябрь = 8
+    const start = new Date(2010, 8, 20);
     const now = new Date();
     let years = now.getFullYear() - start.getFullYear();
     const hasNotPassedYet =
@@ -473,16 +517,36 @@
     els.forEach(el => { if (el) el.textContent = years; });
   }
 
-  // текущий год в футере
   function fillYear() {
     const yEl = document.getElementById('current-year');
     if (yEl) yEl.textContent = new Date().getFullYear();
+  }
+
+  function setupBurger() {
+    const burger = document.querySelector('.burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (!burger || !mobileMenu) return;
+
+    const toggle = () => {
+      burger.classList.toggle('is-open');
+      mobileMenu.classList.toggle('is-open');
+    };
+
+    burger.addEventListener('click', toggle);
+
+    mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('is-open');
+        mobileMenu.classList.remove('is-open');
+      });
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     setupSmoothAnchorLinks();
     fillExperience();
     fillYear();
+    setupBurger();
   });
 </script>
 
