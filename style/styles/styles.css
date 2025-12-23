@@ -88,9 +88,15 @@ p {
 header {
   border-bottom: 1px solid var(--border-light);
   background: #ffffff;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 50;
+}
+
+main {
+  padding-top: 140px; /* подгони под реальную высоту хедера */
 }
 
 .top-bar {
@@ -1332,8 +1338,12 @@ html, body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  header {
+ header {
     position: static;
+  }
+
+  main {
+    padding-top: 0;
   }
 
   .cookie-banner-inner {
