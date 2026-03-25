@@ -11,7 +11,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     window.addEventListener('load', () => {
-        document.querySelector('.hero').classList.add('loaded');
+        const hero = document.querySelector('.hero');
+
+        hero.classList.add('loaded');
+
+        // запускаем счетчик ПОСЛЕ появления
+        setTimeout(() => {
+            counters.forEach(counter => animateCounter(counter));
+        }, 600); // синхронизировано с анимацией
     });
 
     const dropdownItems = document.querySelectorAll('.nav__item, .lang');
@@ -78,11 +85,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
         requestAnimationFrame(update);
     };
+    const stats = document.querySelector('.hero__stats');
 
-    // запускаем когда hero появился
-    window.addEventListener('load', () => {
-        counters.forEach(counter => animateCounter(counter));
+    const observerStats = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+
+            counters.forEach(counter => animateCounter(counter));
+
+            observerStats.disconnect(); // чтобы не запускалось второй раз
+        }
+    }, {
+        threshold: 0.5 // когда 50% блока видно
     });
+
+    observerStats.observe(stats);
+
+
 
     const btn = document.querySelector('.hero__btn');
 
@@ -100,5 +118,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btn.addEventListener('mouseleave', () => {
         btn.style.transform = `translate(0, 0)`;
+    });
+
+    const burger = document.querySelector('.burger');
+    const menu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.mobile-overlay');
+    const menuLinks = document.querySelectorAll('.mobile-menu a');
+
+    function closeMenu() {
+        burger.classList.remove('active');
+        menu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+    }
+
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        menu.classList.toggle('active');
+        overlay.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
+    });
+
+    /* клик вне меню */
+    overlay.addEventListener('click', closeMenu);
+
+    /* клик по пункту */
+    menuLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
     });
 });
