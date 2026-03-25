@@ -257,6 +257,38 @@ body {
 
 
 
+.nav a,
+.nav__label {
+  position: relative;
+}
+
+.nav a::after,
+.nav__label::after {
+  content: "";
+  position: absolute;
+
+  left: 50%;
+  bottom: -6px;
+
+  width: 0;
+  height: 1px;
+
+  background: #c89b3c;
+
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::after,
+.nav__item:hover .nav__label::after {
+  width: 100%;
+  opacity: 1;
+}
+
+.nav a.active::after {
+  width: 100%;
+}
+
 /* RIGHT SIDE */
 
 
