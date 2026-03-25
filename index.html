@@ -20,9 +20,9 @@
   <header class="header">
     <div class="container header__inner">
 
-      <div class="logo">
+      <a href="#hero" class="logo">
         <img src="styles/images/logo.png" alt="Грузовая Планета">
-      </div>
+      </a>
       <nav class="nav">
 
         <div class="nav__item">
@@ -37,7 +37,7 @@
           </div>
         </div>
 
-        <a href="#">Кейсы</a>
+        <a href="#cases">Кейсы</a>
 
         <div class="nav__item">
           <span>Клиентам
@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <a href="#">Контакты</a>
+        <a href="#contacts">Контакты</a>
 
       </nav>
 
@@ -82,7 +82,7 @@
     </div>
   </header>
 
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="hero__overlay"></div>
     <div class="container">
       <div class="hero__content">
@@ -101,25 +101,28 @@
         <a href="#" class="hero__btn">
           Получить расчёт за 15 минут →
         </a>
+        <div class="hero__note">
+          Без навязчивых продаж. Конфиденциальность данных.
+        </div>
         <div class="hero__stats">
 
           <div class="hero__stat">
-            <div class="hero__stat-value">15+</div>
+            <div class="hero__stat-value" data-target="15">0+</div>
             <div class="hero__stat-text">лет на рынке</div>
           </div>
 
           <div class="hero__stat">
-            <div class="hero__stat-value">5000+</div>
+            <div class="hero__stat-value" data-target="5000">0+</div>
             <div class="hero__stat-text">рейсов ежегодно</div>
           </div>
 
           <div class="hero__stat">
-            <div class="hero__stat-value">3000+</div>
+            <div class="hero__stat-value" data-target="3000">0+</div>
             <div class="hero__stat-text">рекомендаций ATI</div>
           </div>
 
           <div class="hero__stat">
-            <div class="hero__stat-value">5 звезд</div>
+            <div class="hero__stat-value" data-target="5">0</div>
             <div class="hero__stat-text">рейтинг ATI</div>
           </div>
 
@@ -166,7 +169,8 @@
     </div>
   </section>
 
-
+  <section id="cases" style="height:100vh; background:#111;"></section>
+  <section id="contacts" style="height:100vh; background:#222;"></section>
 
 
   <script>
@@ -200,7 +204,77 @@
         }, 200); // задержка закрытия
       });
     });
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav a");
 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+
+          navLinks.forEach(link => {
+            link.classList.remove("active");
+
+            if (link.getAttribute("href") === "#" + id) {
+              link.classList.add("active");
+            }
+          });
+        }
+      });
+    }, {
+      threshold: 0.6
+    });
+
+    sections.forEach(section => observer.observe(section));
+    const counters = document.querySelectorAll('.hero__stat-value');
+
+    const animateCounter = (el) => {
+      const target = +el.getAttribute('data-target');
+      let current = 0;
+
+      const duration = 1200;
+      const startTime = performance.now();
+
+      const update = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+
+        const value = Math.floor(progress * target);
+        if (target === 5) {
+          el.textContent = value + ' звезд';
+        } else {
+          el.textContent = value + (target >= 10 ? '+' : '');
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+      };
+
+      requestAnimationFrame(update);
+    };
+
+    // запускаем когда hero появился
+    window.addEventListener('load', () => {
+      counters.forEach(counter => animateCounter(counter));
+    });
+
+    const btn = document.querySelector('.hero__btn');
+
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const moveX = (x - rect.width / 2) / 15;
+      const moveY = (y - rect.height / 2) / 15;
+
+      btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = `translate(0, 0)`;
+    });
 
 
   </script>
