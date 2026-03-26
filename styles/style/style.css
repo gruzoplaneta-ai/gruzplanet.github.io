@@ -979,6 +979,20 @@ body {
   color: #c89b3c;
 }
 
+/* начальное состояние */
+.mobile-menu a,
+.mobile-menu__item {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+/* когда меню открыто */
+.mobile-menu.active a,
+.mobile-menu.active .mobile-menu__item {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* ======================
    RESPONSIVE
 ====================== */
