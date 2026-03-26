@@ -979,6 +979,24 @@ body {
     flex-shrink: 0;
   }
 
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(10, 20, 30, 0.6);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: 0.3s;
+
+    z-index: 140;
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 @media (max-width: 480px) {
