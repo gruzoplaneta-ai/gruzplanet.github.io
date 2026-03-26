@@ -948,7 +948,7 @@ body {
 }
 
 /* поворот стрелки */
-.mobile-menu__item.active .mobile-menu__label::after {
+.mobile-menu__item.open .mobile-menu__label::after {
   transform: rotate(90deg);
   opacity: 1;
 }
@@ -961,7 +961,7 @@ body {
 }
 
 /* подменю открыто */
-.mobile-menu__item.active .mobile-submenu {
+.mobile-menu__item.open .mobile-submenu {
   max-height: 200px;
   margin-top: 10px;
 }

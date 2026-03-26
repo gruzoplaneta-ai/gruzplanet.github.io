@@ -212,6 +212,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* клик вне меню */
     overlay.addEventListener('click', closeMenu);
+    menu.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 
     /* клик по пункту */
     menuLinks.forEach(link => {
@@ -265,8 +268,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     document.querySelectorAll('.mobile-menu__label').forEach(label => {
-        label.addEventListener('click', () => {
+        label.addEventListener('touchstart', (e) => {
+            e.stopPropagation(); // 🔥 ключ
+
             const parent = label.parentElement;
+
             parent.classList.toggle('active');
         });
     });
