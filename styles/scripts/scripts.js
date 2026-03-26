@@ -135,19 +135,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     burger.addEventListener('click', () => {
-        burger.classList.toggle('active');
+        const isOpen = burger.classList.toggle('active');
+
         menu.classList.toggle('active');
         overlay.classList.toggle('active');
-        document.body.classList.toggle('no-scroll');
+
+        if (isOpen) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
     });
 
     let startX = 0;
     let currentX = 0;
     let isDragging = false;
+    let startTime = 0;
 
     menu.addEventListener('touchstart', (e) => {
         isDragging = true;
         startX = e.touches[0].clientX;
+        currentX = startX;
+        startTime = Date.now();
+
+        menu.classList.add('dragging');
     });
 
     menu.addEventListener('touchmove', (e) => {
@@ -157,24 +168,42 @@ document.addEventListener("DOMContentLoaded", () => {
         let delta = currentX - startX;
 
         if (delta > 0) {
-            menu.style.transform = `translateX(${delta}px)`;
+            // 🔥 resistance
+            let resistance = delta * 0.6;
+
+            menu.style.transform = `translateX(${resistance}px)`;
+
+            // 🔥 overlay fade
+            let progress = Math.min(delta / 300, 1);
+            overlay.style.opacity = 1 - progress;
         }
     });
 
     menu.addEventListener('touchend', () => {
+        if (!isDragging) return;
+
         isDragging = false;
+        menu.classList.remove('dragging');
 
         let delta = currentX - startX;
+        let time = Date.now() - startTime;
 
-        if (delta > 100) {
+        // защита от деления на 0
+        let velocity = time > 0 ? delta / time : 0;
+
+        // 🔥 решение закрывать или нет
+        if (delta > 100 || velocity > 0.5) {
             closeMenu();
 
-            // 🔥 КРИТИЧНО
             setTimeout(() => {
                 menu.style.transform = '';
+                overlay.style.opacity = '';
             }, 300);
+
         } else {
+            // возврат назад
             menu.style.transform = '';
+            overlay.style.opacity = '';
         }
     });
 

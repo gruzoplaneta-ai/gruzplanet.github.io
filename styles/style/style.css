@@ -8,6 +8,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
 }
 
 
@@ -16,6 +17,12 @@
 /* ======================
    BASE
 ====================== */
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+  touch-action: none;
+}
+
 section {
   scroll-margin-top: 100px;
 }
@@ -791,6 +798,9 @@ body {
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
+.mobile-menu.dragging {
+  transition: none;
+}
 
 .mobile-menu__inner {
   padding: 80px 30px;
