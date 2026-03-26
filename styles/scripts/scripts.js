@@ -202,6 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         } else {
             // возврат назад
+            menu.style.transition = 'transform 0.5s cubic-bezier(0.22, 1.2, 0.36, 1)';
             menu.style.transform = '';
             overlay.style.opacity = '';
         }
@@ -261,6 +262,11 @@ document.addEventListener("DOMContentLoaded", () => {
             dropdownItems.forEach(i => i.classList.remove('open'));
         });
     }
-
+    document.querySelectorAll('.mobile-menu__label').forEach(label => {
+        label.addEventListener('click', () => {
+            const parent = label.parentElement;
+            parent.classList.toggle('active');
+        });
+    });
 
 });

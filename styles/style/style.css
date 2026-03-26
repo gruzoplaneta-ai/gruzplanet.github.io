@@ -923,6 +923,62 @@ body {
   transform: translateX(4px);
 }
 
+
+/* ===== MOBILE SUBMENU ===== */
+
+.mobile-menu__item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 10px;
+}
+
+.mobile-menu__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* стрелка (делаем через CSS, не в HTML) */
+.mobile-menu__label::after {
+  content: '›';
+  font-size: 16px;
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+/* поворот стрелки */
+.mobile-menu__item.active .mobile-menu__label::after {
+  transform: rotate(90deg);
+  opacity: 1;
+}
+
+/* подменю скрыто */
+.mobile-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* подменю открыто */
+.mobile-menu__item.active .mobile-submenu {
+  max-height: 200px;
+  margin-top: 10px;
+}
+
+/* пункты */
+.mobile-submenu a {
+  display: block;
+  padding: 8px 0 8px 10px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* hover */
+.mobile-submenu a:hover {
+  color: #c89b3c;
+}
+
 /* ======================
    RESPONSIVE
 ====================== */
