@@ -176,12 +176,41 @@
   <section id="cases" style="height:100vh; background:#111;"></section>
   <section id="contacts" style="height:100vh; background:#222;"></section>
 
+
+  <!-- Мобильное меню -->
   <div class="mobile-menu">
+    <div class="mobile-menu__logo">
+      <img src="styles/images/logo.png" alt="">
+    </div>
     <div class="mobile-menu__inner">
 
-      <a href="#">Направления</a>
+      <div class="mobile-menu__item">
+        <div class="mobile-menu__label">Направления <span class="mobile-arrow">
+            <svg width="10" height="10" viewBox="0 0 10 10">
+              <path d="M2 2 L8 5 L2 8" stroke="white" stroke-width="1.5" fill="none" />
+            </svg>
+          </span></div>
+        <div class="mobile-submenu">
+          <a href="#">Россия </a>
+          <a href="#">Китай </a>
+        </div>
+      </div>
+
       <a href="#">Кейсы</a>
-      <a href="#">Клиентам</a>
+
+      <div class="mobile-menu__item">
+        <div class="mobile-menu__label">Клиентам <span class="mobile-arrow">
+            <svg width="10" height="10" viewBox="0 0 10 10">
+              <path d="M2 2 L8 5 L2 8" stroke="white" stroke-width="1.5" fill="none" />
+            </svg>
+          </span></div>
+        <div class="mobile-submenu">
+          <a href="#">Почему мы </a>
+          <a href="#">Отзывы </a>
+          <a href="#">FAQ </a>
+        </div>
+      </div>
+
       <a href="#">Контакты</a>
 
       <div class="mobile-menu__extra">
@@ -192,6 +221,7 @@
   </div>
 
   <div class="mobile-overlay"></div>
+
   <script src="styles/scripts/scripts.js"></script>
 </body>
 

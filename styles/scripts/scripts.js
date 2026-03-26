@@ -120,6 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.style.transform = `translate(0, 0)`;
     });
 
+
+
     const burger = document.querySelector('.burger');
     const menu = document.querySelector('.mobile-menu');
     const overlay = document.querySelector('.mobile-overlay');
@@ -139,6 +141,20 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.toggle('no-scroll');
     });
 
+    let startX = 0;
+
+    menu.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    menu.addEventListener('touchmove', (e) => {
+        let currentX = e.touches[0].clientX;
+
+        if (currentX - startX > 80) {
+            closeMenu();
+        }
+    });
+
     /* клик вне меню */
     overlay.addEventListener('click', closeMenu);
 
@@ -146,4 +162,33 @@ document.addEventListener("DOMContentLoaded", () => {
     menuLinks.forEach(link => {
         link.addEventListener('click', closeMenu);
     });
+
+    const mobileItems = document.querySelectorAll('.mobile-menu__item');
+
+    mobileItems.forEach(item => {
+        const label = item.querySelector('.mobile-menu__label');
+
+        if (!label) return;
+
+        label.addEventListener('click', (e) => {
+            e.stopPropagation();
+
+            mobileItems.forEach(i => {
+                if (i !== item) {
+                    i.classList.remove('open');
+                }
+            });
+
+            item.classList.toggle('open');
+        });
+    });
+
+
+    const menuItems = document.querySelectorAll('.mobile-menu a, .mobile-menu__item');
+
+    menuItems.forEach((item, i) => {
+        item.style.transition = `all 0.4s cubic-bezier(0.2,0.8,0.2,1) ${i * 0.05}s`;
+    });
+
+
 });
