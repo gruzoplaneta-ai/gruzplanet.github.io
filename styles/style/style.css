@@ -164,6 +164,12 @@ body {
   margin-right: 60px;
 }
 
+.logo:hover img {
+  transform: translateY(-1px);
+  filter:
+    brightness(1.2) drop-shadow(0 0 8px rgba(200, 155, 60, 0.4));
+}
+
 /* NAV */
 
 .nav {
@@ -442,6 +448,34 @@ body {
   z-index: 1;
 }
 
+@keyframes heroZoom {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.hero {
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: inherit;
+  background-size: cover;
+  background-position: inherit;
+
+  animation: heroZoom 20s ease-in-out infinite alternate;
+
+  z-index: 0;
+  will-change: transform;
+}
 
 /* overlay */
 
@@ -461,6 +495,8 @@ body {
 
   z-index: 1;
 }
+
+
 
 /* ======================
    HERO CONTENT
@@ -1042,7 +1078,42 @@ body {
 
 }
 
-@media (max-width: 845px) {
+/* для айпадов типа бургер есть, нижний блок тоже есть */
+
+@media (max-width: 853px) {
+  .burger {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+    /* пока убираем */
+  }
+
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(10, 20, 30, 0.25);
+    backdrop-filter: blur(4px);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: 0.3s;
+
+    z-index: 140;
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+
+  }
+}
+
+
+@media (max-width: 800px) {
 
   .phone {
     flex: 0 1 auto;
@@ -1072,6 +1143,7 @@ body {
     height: 70px;
   }
 
+
   .nav {
     display: none;
     /* пока убираем */
@@ -1079,6 +1151,8 @@ body {
 
   .hero {
     padding-top: 80px;
+    background-position: calc(70% - 10px) center;
+
   }
 
   .hero__content {
@@ -1099,16 +1173,22 @@ body {
     justify-content: center;
   }
 
+  .hero__note {
+    text-align: center;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .hero__stats {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 12px;
-    align-items: stretch;
-    padding-bottom: 10px;
-    padding: 0 20px 10px;
-    scroll-snap-type: x mandatory;
-    justify-content: flex-start;
+    position: relative;
+    max-width: 300px;
+    margin: 20px auto 0;
+
+    padding: 0;
   }
 
   .hero__stats::-webkit-scrollbar {
@@ -1116,23 +1196,52 @@ body {
   }
 
   .hero__stat {
-    min-width: 140px;
-    flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(12px);
-    scroll-snap-align: start;
+    padding: 14px 12px;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.35),
+      inset 0 0 25px rgba(255, 255, 255, 0.05);
+
+    text-align: center;
   }
 
-  .hero__stats::after {
+  .hero__stat:first-child {
+    border: 1px solid rgba(200, 155, 60, 0.4);
+
+    box-shadow:
+      0 0 20px rgba(200, 155, 60, 0.25),
+      0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .hero__stats::before {
     content: "";
     position: absolute;
-    right: 0;
-    top: 0;
-    width: 40px;
-    height: 100%;
+    inset: -20px;
 
-    background: linear-gradient(to right, transparent, #22282e);
-    pointer-events: none;
+    background: radial-gradient(circle,
+        rgba(255, 255, 255, 0.08),
+        transparent 70%);
+
+    z-index: -1;
+  }
+
+
+
+  .hero__stat-value {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .hero__stat-text {
+    font-size: 11px;
+    opacity: 0.7;
   }
 
   .hero__bottom {
@@ -1195,4 +1304,60 @@ body {
     display: flex;
   }
 
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+
+
+  .burger {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+    /* пока убираем */
+  }
+
+  .mobile-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(10, 20, 30, 0.25);
+    backdrop-filter: blur(4px);
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: 0.3s;
+
+    z-index: 140;
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+
+  }
+
+  .hero__content {
+    margin-top: 60px;
+    /* уменьшаем */
+  }
+
+  .hero__title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .hero__desc {
+    font-size: 13px;
+  }
+
+  .hero__bottom {
+    display: none;
+  }
+
+  .hero__stats {
+    margin-top: 15px;
+  }
 }
