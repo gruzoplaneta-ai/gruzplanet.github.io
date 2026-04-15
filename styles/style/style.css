@@ -1350,6 +1350,238 @@ body {
   margin-top: 6px;
 }
 
+
+/* ======================
+   APPROACH
+====================== */
+
+.approach {
+  position: relative;
+  padding: 120px 0 200px;
+  color: #fff;
+  overflow: visible;
+}
+
+/* фон */
+
+.approach__bg {
+  position: absolute;
+  inset: 0;
+
+  background: url('../images/background-3.png') center/cover no-repeat;
+  z-index: 0;
+}
+
+.approach__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(to bottom, rgba(10, 20, 30, 0.85), rgba(10, 20, 30, 0.75)),
+    radial-gradient(circle at 20% 10%, rgba(200, 155, 60, 0.15), transparent 40%);
+}
+
+/* контент */
+
+.approach .container {
+  position: relative;
+  z-index: 2;
+}
+
+.approach__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+/* LEFT */
+
+.approach__label {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.approach__label::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #c89b3c;
+  border-radius: 50%;
+}
+
+.approach__title {
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.approach__title span {
+  font-weight: 700;
+}
+
+/* RIGHT */
+
+.approach__right {
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 12px;
+}
+
+/* ======================
+   CARD
+====================== */
+
+.approach__card {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) perspective(1000px) rotateX(1deg);
+  bottom: -100px;
+
+  width: 100%;
+  max-width: 1100px;
+
+  z-index: 3;
+
+}
+
+.approach__card-inner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  background: linear-gradient(to bottom, #ffffff, #f9fafb);
+
+  border-radius: 28px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, 0.25),
+    0 15px 40px rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+
+.approach__card-inner::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.6), transparent 60%);
+
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.approach__card-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(circle at 20% 0%,
+      rgba(255, 255, 255, 0.6),
+      transparent 50%);
+
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ITEM */
+
+.approach-item {
+  padding: 34px 28px;
+
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+
+  transition: 0.25s ease;
+}
+
+.approach-item:first-child {
+  background: rgba(200, 155, 60, 0.04);
+}
+
+.approach-item:last-child {
+  border-right: none;
+}
+
+/* hover (очень мягкий) */
+
+.approach-item:hover {
+  background: rgba(200, 155, 60, 0.04);
+}
+
+/* ICON */
+
+.approach-item .icon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.approach-item .icon::after {
+  content: "";
+
+  position: absolute;
+  inset: -6px;
+
+  background: rgba(200, 155, 60, 0.08);
+  border-radius: 8px;
+
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.approach-item:hover .icon::after {
+  opacity: 1;
+}
+
+.approach-item .icon svg {
+  width: 100%;
+  height: 100%;
+
+  stroke: #c89b3c;
+  stroke-width: 1.6;
+  filter: drop-shadow(0 2px 6px rgba(200, 155, 60, 0.3));
+
+  transition: 0.25s;
+}
+
+.approach-item:hover .icon svg {
+  transform: translateY(-2px);
+}
+
+
+
+/* TITLE */
+
+.approach-item .title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #000000;
+
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+
+.approach-item .text {
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(31, 42, 53, 0.6);
+}
+
 /* ======================
    RESPONSIVE
 ====================== */
@@ -1394,7 +1626,44 @@ body {
     flex-shrink: 0;
   }
 
+  .approach {
+    padding-bottom: 80px;
+  }
 
+  .approach__content {
+    flex-direction: column;
+    gap: 30px;
+    position: relative;
+    z-index: 2
+  }
+
+  .approach__right {
+    max-width: 100%;
+  }
+
+  .approach__bg {
+    height: 520px;
+  }
+
+  .approach {
+    padding-bottom: 80px;
+  }
+
+  .approach__card {
+    position: relative;
+    bottom: auto;
+
+    left: auto;
+    /* 🔥 ВОТ ЭТО ГЛАВНОЕ */
+    transform: none;
+
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .approach__card-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* для айпадов типа бургер есть, нижний блок тоже есть */
@@ -1627,6 +1896,29 @@ body {
     width: 24px;
     height: 24px;
   }
+
+  .approach {
+    padding: 80px 0 80px;
+  }
+
+  /* ❗ убираем наложение */
+
+
+  .approach__card-inner {
+    grid-template-columns: 1fr;
+    border-radius: 20px;
+    width: 100%;
+  }
+
+  /* убираем вертикальные границы */
+  .approach-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .approach-item:last-child {
+    border-bottom: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1651,6 +1943,18 @@ body {
     display: flex;
   }
 
+  .approach__title {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
+  .approach__label {
+    font-size: 10px;
+  }
+
+  .approach-item {
+    padding: 24px 20px;
+  }
 }
 
 @media (max-height: 500px) and (orientation: landscape) {

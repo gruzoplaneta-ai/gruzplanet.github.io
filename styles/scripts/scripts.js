@@ -139,9 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         menu.classList.toggle('active');
         overlay.classList.toggle('active');
-        if (menu.classList.contains('active')) {
-            animateMenuItems();
-        }
+
         if (isOpen) {
             document.body.classList.add('no-scroll');
         } else {
@@ -242,11 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    const menuItems = document.querySelectorAll('.mobile-menu a, .mobile-menu__item');
 
-    menuItems.forEach((item, i) => {
-        item.style.transition = `all 0.4s cubic-bezier(0.2,0.8,0.2,1) ${i * 0.05}s`;
-    });
 
     const isMobile = window.innerWidth <= 1024;
 
@@ -277,12 +271,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    const animateMenuItems = () => {
-        const items = document.querySelectorAll('.mobile-menu a, .mobile-menu__item');
 
-        items.forEach((item, i) => {
-            item.style.transition = `all 0.4s cubic-bezier(0.2,0.8,0.2,1) ${i * 0.06}s`;
-        });
-    };
 
 });
