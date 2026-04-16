@@ -270,7 +270,56 @@ document.addEventListener("DOMContentLoaded", () => {
             parent.classList.toggle('active');
         });
     });
+    ymaps.ready(init);
 
+    let map;
+    let currentRoute;
+
+    function init() {
+        map = new ymaps.Map("map", {
+            center: [55.75, 37.61],
+            zoom: 5,
+            controls: []
+        });
+
+        const first = document.querySelector('.route.active');
+        buildRoute(first.dataset.route);
+
+        document.querySelectorAll('.route').forEach(item => {
+            item.addEventListener('click', () => {
+
+                document.querySelectorAll('.route').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                buildRoute(item.dataset.route);
+            });
+        });
+    }
+
+    function buildRoute(routeString) {
+
+        if (currentRoute) {
+            map.geoObjects.remove(currentRoute);
+        }
+
+        const points = routeString.split(',');
+
+        ymaps.route(points, {
+            mapStateAutoApply: true
+        }).then(route => {
+
+            currentRoute = route;
+
+            route.getPaths().options.set({
+                strokeColor: '#c89b3c',
+                strokeWidth: 4,
+                opacity: 0.9
+            });
+
+            map.geoObjects.add(route);
+
+        });
+    }
 
 
 });

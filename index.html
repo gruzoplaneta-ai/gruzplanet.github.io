@@ -19,6 +19,7 @@
   <link rel="icon" type="image/ico" sizes="32x32" href="styles/images/icon.ico">
   <link rel="icon" type="image/ico" sizes="16x16" href="styles/images/icon.ico">
   <link rel="apple-touch-icon" href="styles/images/icon.ico">
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=ca41035a-b026-489f-9938-07029ad581c6&lang=ru_RU"></script>
 </head>
 
 <body>
@@ -378,7 +379,71 @@
     </div>
 
   </section>
+  <section class="routes">
 
+    <div class="container">
+
+      <div class="routes__top">
+
+        <div class="routes__left">
+          <div class="routes__label">НАПРАВЛЕНИЯ ПО РОССИИ</div>
+
+          <h2 class="routes__title">
+            Грузоперевозки по всей России<br>
+            <span>без срывов сроков поставок</span>
+          </h2>
+        </div>
+
+        <div class="routes__right">
+          <p>
+            Организуем автомобильные перевозки между ключевыми регионами России.
+            Помогаем бизнесу избегать срывов поставок и простоев производства.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="routes__content">
+
+        <!-- КАРТА -->
+        <div id="map" class="routes__map"></div>
+
+        <!-- СПИСОК -->
+        <div class="routes__list">
+
+          <div class="route active" data-route="Москва, Новосибирск, Екатеринбург, Казань">
+            <div class="city">Москва</div>
+            <div class="desc">Сборные и генеральные грузы</div>
+          </div>
+
+          <div class="route" data-route="Санкт-Петербург, Казань, Ростов-на-Дону">
+            <div class="city">Санкт-Петербург</div>
+            <div class="desc">Торговые и распределительные грузы</div>
+          </div>
+
+          <div class="route" data-route="Новосибирск, Красноярск, Владивосток">
+            <div class="city">Новосибирск</div>
+            <div class="desc">Доставка по регионам</div>
+          </div>
+
+          <div class="route" data-route="Хабаровск, Владивосток, Новосибирск">
+            <div class="city">Хабаровск</div>
+            <div class="desc">Сложные маршруты и логистика</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="routes__bottom">
+        <button class="btn-primary">
+          Получить расчёт перевозки за 15 минут →
+        </button>
+      </div>
+
+    </div>
+
+  </section>
   <section id="cases" style="height:100vh; background:#111;"></section>
   <section id="contacts" style="height:100vh; background:#222;"></section>
 
