@@ -339,92 +339,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // hover
             paths.events.add('mouseenter', () => {
-                paths.options.set({
-                    strokeWidth: 6,
-                    opacity: 1
-                });
+                paths.options.set({ strokeWidth: 6, opacity: 1 });
             });
 
             paths.events.add('mouseleave', () => {
-                paths.options.set({
-                    strokeWidth: 4,
-                    opacity: 0.9
-                });
+                paths.options.set({ strokeWidth: 4, opacity: 0.9 });
             });
 
             map.geoObjects.add(route);
-            // ======================
-            // 🔥 DELIVERY + DISTANCE (FINAL WORKING)
-            // ======================
-
-            // расстояние
-            const rawDistance = route.getLength(); // метры
-            const distance = route.getHumanLength(); // "2 450 км"
-
-            // безопасно получаем duration
-            const durationObj = route.getDuration();
-            let rawDuration = 0;
-
-            if (durationObj && typeof durationObj.value === 'number') {
-                rawDuration = durationObj.value;
-            }
-
-            // км
-            const km = rawDistance / 1000;
-
-            // базовые дни
-            let baseDays;
-
-            if (rawDuration > 0) {
-                baseDays = Math.ceil(rawDuration / 86400);
-            } else {
-                // fallback если API не дал время
-                baseDays = Math.ceil(km / 700);
-            }
-
-            // логика логистики
-            let minAdd = 1;
-            let maxAdd = 2;
-
-            if (km > 1500 && km <= 4000) {
-                minAdd = 2;
-                maxAdd = 3;
-            } else if (km > 4000) {
-                minAdd = 3;
-                maxAdd = 5;
-            }
-
-            const minDays = baseDays + minAdd;
-            const maxDays = baseDays + maxAdd;
-
-            const deliveryTime = `${minDays}–${maxDays} дней`;
 
             // ======================
-            // ВСТАВКА В КАРТОЧКУ
+            // 🔥 ВОТ ТУТ МАГИЯ
             // ======================
 
-            // 🔥 ВАЖНО: ищем активную карточку именно среди routes
-            const activeCard = document.querySelector('.routes__list .route.active');
+            const distance = route.getHumanLength();   // "2 450 км"
+            const duration = route.getHumanTime();     // "1 д 8 ч"
 
-            if (!activeCard) {
-                console.log('NO ACTIVE CARD');
-                return;
-            }
-
+            const activeCard = document.querySelector('.route.active');
             const meta = activeCard.querySelector('.meta');
 
-            if (!meta) {
-                console.log('NO META BLOCK');
-                return;
+            if (meta) {
+                meta.innerHTML = `
+              <span>${distance}</span> • ${duration}
+            `;
             }
-
-            // 🔥 очищаем перед вставкой (важно при кликах)
-            meta.innerHTML = '';
-
-            meta.innerHTML = `
-  <span>${distance}</span>
-  <span style="margin-left:8px;">Доставка: ${deliveryTime}</span>
-`;
 
         }).catch(err => {
             console.log('ROUTE ERROR:', err);
