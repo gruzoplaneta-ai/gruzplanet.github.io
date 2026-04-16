@@ -352,15 +352,44 @@ document.addEventListener("DOMContentLoaded", () => {
             // 🔥 ВОТ ТУТ МАГИЯ
             // ======================
 
-            const distance = route.getHumanLength();   // "2 450 км"
-            const duration = route.getHumanTime();     // "1 д 8 ч"
+            const distance = route.getHumanLength();
+
+            // пробуем получить точное время
+            let deliveryTime = route.getHumanTime(); // fallback (если вдруг что)
+
+            const durationObj = route.getDuration();
+
+            if (durationObj && durationObj.value) {
+
+                const rawDuration = durationObj.value;
+                const rawDistance = route.getLength();
+
+                const km = rawDistance / 1000;
+                const baseDays = Math.ceil(rawDuration / 86400);
+
+                let minAdd = 1;
+                let maxAdd = 2;
+
+                if (km > 1500 && km <= 4000) {
+                    minAdd = 2;
+                    maxAdd = 3;
+                } else if (km > 4000) {
+                    minAdd = 3;
+                    maxAdd = 5;
+                }
+
+                const minDays = baseDays + minAdd;
+                const maxDays = baseDays + maxAdd;
+
+                deliveryTime = `${minDays}–${maxDays} дней`;
+            }
 
             const activeCard = document.querySelector('.route.active');
             const meta = activeCard.querySelector('.meta');
 
             if (meta) {
                 meta.innerHTML = `
-              <span>${distance}</span> • ${duration}
+              <span>${distance}</span> • ${deliveryTime}
             `;
             }
 
