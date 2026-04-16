@@ -334,10 +334,27 @@ document.addEventListener("DOMContentLoaded", () => {
             currentRoute = route;
 
             // стиль линии
-            route.getPaths().options.set({
+            const paths = route.getPaths();
+
+            paths.options.set({
                 strokeColor: '#c89b3c',
                 strokeWidth: 4,
                 opacity: 0.9
+            });
+
+            // 🔥 hover эффект
+            paths.events.add('mouseenter', () => {
+                paths.options.set({
+                    strokeWidth: 6,
+                    opacity: 1
+                });
+            });
+
+            paths.events.add('mouseleave', () => {
+                paths.options.set({
+                    strokeWidth: 4,
+                    opacity: 0.9
+                });
             });
 
             map.geoObjects.add(route);
