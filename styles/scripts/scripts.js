@@ -339,11 +339,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // hover
             paths.events.add('mouseenter', () => {
-                paths.options.set({ strokeWidth: 6, opacity: 1 });
+                paths.options.set({
+                    strokeWidth: 6,
+                    opacity: 1
+                });
             });
 
             paths.events.add('mouseleave', () => {
-                paths.options.set({ strokeWidth: 4, opacity: 0.9 });
+                paths.options.set({
+                    strokeWidth: 4,
+                    opacity: 0.9
+                });
             });
 
             map.geoObjects.add(route);
@@ -352,16 +358,12 @@ document.addEventListener("DOMContentLoaded", () => {
             // 🔥 DELIVERY + DISTANCE (SMART)
             // ======================
 
-            const rawDistance = route.getLength();        // метры
+            const rawDistance = route.getLength(); // метры
             const rawDuration = route.getDuration().value; // секунды
 
-            // км (для логики)
             const km = rawDistance / 1000;
-
-            // дни по навигатору
             const baseDays = Math.ceil(rawDuration / 86400);
 
-            // 🔥 динамический буфер как у логистики
             let minAdd = 1;
             let maxAdd = 2;
 
@@ -373,29 +375,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 maxAdd = 5;
             }
 
-            // итог сроки
             const minDays = baseDays + minAdd;
             const maxDays = baseDays + maxAdd;
 
             const deliveryTime = `${minDays}–${maxDays} дней`;
 
-            // красивое расстояние (оставляем от Яндекса)
             const distance = route.getHumanLength();
 
-            // вставка в карточку
             const activeCard = document.querySelector('.route.active');
-            const meta = activeCard.querySelector('.meta');
 
-            if (meta) {
-                meta.innerHTML = `
-        <span>${distance}</span>
-        <span style="margin-left:8px;">Доставка: ${deliveryTime}</span>
-    `;
+            if (activeCard) {
+                const meta = activeCard.querySelector('.meta');
+
+                if (meta) {
+                    meta.innerHTML = `
+                    <span>${distance}</span>
+                    <span style="margin-left:8px;">Доставка: ${deliveryTime}</span>
+                `;
+                }
             }
 
         }).catch(err => {
             console.log('ROUTE ERROR:', err);
         });
     }
-
 });
