@@ -317,15 +317,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!routeString || !map) return;
 
-        // удаляем предыдущий маршрут
         if (currentRoute) {
             map.geoObjects.remove(currentRoute);
         }
 
-        // 🔥 КЛЮЧЕВАЯ СТРОКА (НЕ ТРОГАТЬ)
         const points = routeString.split(',').map(p => p.trim());
-
-        console.log('points:', points);
 
         ymaps.route(points, {
             mapStateAutoApply: true
@@ -333,7 +329,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             currentRoute = route;
 
-            // стиль линии
             const paths = route.getPaths();
 
             paths.options.set({
@@ -342,22 +337,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 opacity: 0.9
             });
 
-            // 🔥 hover эффект
+            // hover
             paths.events.add('mouseenter', () => {
-                paths.options.set({
-                    strokeWidth: 6,
-                    opacity: 1
-                });
+                paths.options.set({ strokeWidth: 6, opacity: 1 });
             });
 
             paths.events.add('mouseleave', () => {
-                paths.options.set({
-                    strokeWidth: 4,
-                    opacity: 0.9
-                });
+                paths.options.set({ strokeWidth: 4, opacity: 0.9 });
             });
 
             map.geoObjects.add(route);
+
+            // ======================
+            // 🔥 ВОТ ТУТ МАГИЯ
+            // ======================
+
+            const distance = route.getHumanLength();   // "2 450 км"
+            const duration = route.getHumanTime();     // "1 д 8 ч"
+
+            const activeCard = document.querySelector('.route.active');
+            const meta = activeCard.querySelector('.meta');
+
+            if (meta) {
+                meta.innerHTML = `
+              <span>${distance}</span> • ${duration}
+            `;
+            }
 
         }).catch(err => {
             console.log('ROUTE ERROR:', err);

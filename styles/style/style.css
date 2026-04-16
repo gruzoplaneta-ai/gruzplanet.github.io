@@ -1703,6 +1703,18 @@ body {
   pointer-events: none;
 }
 
+.meta {
+  margin-top: 8px;
+
+  font-size: 12px;
+  color: #8a949e;
+}
+
+.meta span {
+  color: #c89b3c;
+  font-weight: 500;
+}
+
 /* Chrome / Edge */
 .routes__list::-webkit-scrollbar {
   width: 3px;
