@@ -349,28 +349,48 @@ document.addEventListener("DOMContentLoaded", () => {
             map.geoObjects.add(route);
 
             // ======================
-            // 🔥 ВОТ ТУТ МАГИЯ
+            // 🔥 DELIVERY + DISTANCE (SMART)
             // ======================
 
-            const distance = route.getHumanLength();   // "2 450 км"
-            const rawDuration = route.getDuration().value;
+            const rawDistance = route.getLength();        // метры
+            const rawDuration = route.getDuration().value; // секунды
 
-            const days = rawDuration / 86400;
-            const baseDays = Math.ceil(days);
+            // км (для логики)
+            const km = rawDistance / 1000;
 
-            const minDays = baseDays + 1;
-            const maxDays = baseDays + 3;
+            // дни по навигатору
+            const baseDays = Math.ceil(rawDuration / 86400);
+
+            // 🔥 динамический буфер как у логистики
+            let minAdd = 1;
+            let maxAdd = 2;
+
+            if (km > 1500 && km <= 4000) {
+                minAdd = 2;
+                maxAdd = 3;
+            } else if (km > 4000) {
+                minAdd = 3;
+                maxAdd = 5;
+            }
+
+            // итог сроки
+            const minDays = baseDays + minAdd;
+            const maxDays = baseDays + maxAdd;
 
             const deliveryTime = `${minDays}–${maxDays} дней`;
 
+            // красивое расстояние (оставляем от Яндекса)
+            const distance = route.getHumanLength();
+
+            // вставка в карточку
             const activeCard = document.querySelector('.route.active');
             const meta = activeCard.querySelector('.meta');
 
             if (meta) {
                 meta.innerHTML = `
-                <span>${distance}</span>
-                 <span style="margin-left:8px;">⏱ ${deliveryTime}</span>
-                    `;
+        <span>${distance}</span>
+        <span style="margin-left:8px;">Доставка: ${deliveryTime}</span>
+    `;
             }
 
         }).catch(err => {
