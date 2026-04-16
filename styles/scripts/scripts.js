@@ -353,15 +353,24 @@ document.addEventListener("DOMContentLoaded", () => {
             // ======================
 
             const distance = route.getHumanLength();   // "2 450 км"
-            const duration = route.getHumanTime();     // "1 д 8 ч"
+            const rawDuration = route.getDuration().value;
+
+            const days = rawDuration / 86400;
+            const baseDays = Math.ceil(days);
+
+            const minDays = baseDays + 1;
+            const maxDays = baseDays + 3;
+
+            const deliveryTime = `${minDays}–${maxDays} дней`;
 
             const activeCard = document.querySelector('.route.active');
             const meta = activeCard.querySelector('.meta');
 
             if (meta) {
                 meta.innerHTML = `
-              <span>${distance}</span> • ${duration}
-            `;
+                <span>${distance}</span>
+                 <span style="margin-left:8px;">⏱ ${deliveryTime}</span>
+                    `;
             }
 
         }).catch(err => {
