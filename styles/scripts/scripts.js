@@ -358,38 +358,43 @@ document.addEventListener("DOMContentLoaded", () => {
             // по умолчанию — старое время
             let deliveryTime = route.getHumanTime();
 
-            try {
+            const rawDistance = route.getLength();
+            const km = rawDistance / 1000;
 
-                const durationObj = route.getDuration();
+            // берём строку типа "1 д 8 ч"
+            const humanTime = route.getHumanTime();
 
-                if (durationObj && durationObj.value) {
+            // парсим дни
+            let baseDays = 0;
 
-                    const rawDuration = Number(durationObj.value);
-                    const rawDistance = route.getLength();
+            const dayMatch = humanTime.match(/(\d+)\s*д/);
+            const hourMatch = humanTime.match(/(\d+)\s*ч/);
 
-                    const km = rawDistance / 1000;
-                    const baseDays = Math.ceil(rawDuration / 86400);
+            if (dayMatch) baseDays += parseInt(dayMatch[1]);
+            if (hourMatch) baseDays += Math.ceil(parseInt(hourMatch[1]) / 24);
 
-                    let minAdd = 1;
-                    let maxAdd = 2;
-
-                    if (km > 1500 && km <= 4000) {
-                        minAdd = 2;
-                        maxAdd = 3;
-                    } else if (km > 4000) {
-                        minAdd = 3;
-                        maxAdd = 5;
-                    }
-
-                    const minDays = baseDays + minAdd;
-                    const maxDays = baseDays + maxAdd;
-
-                    deliveryTime = `${minDays}–${maxDays} дней`;
-                }
-
-            } catch (e) {
-                console.log('DELIVERY CALC ERROR:', e);
+            // если вдруг вообще нет — fallback
+            if (baseDays === 0) {
+                baseDays = Math.ceil(km / 700);
             }
+
+            // логистика
+            let minAdd = 1;
+            let maxAdd = 2;
+
+            if (km > 1500 && km <= 4000) {
+                minAdd = 2;
+                maxAdd = 3;
+            } else if (km > 4000) {
+                minAdd = 3;
+                maxAdd = 5;
+            }
+
+            const minDays = baseDays + minAdd;
+            const maxDays = baseDays + maxAdd;
+
+            deliveryTime = `${minDays}–${maxDays} дней`;
+
 
             // вставка
             const activeCard = document.querySelector('.route.active');
@@ -400,7 +405,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (meta) {
                     meta.innerHTML = `
           <span>${distance}</span>
-          <span style="margin-left:8px;">Доставка≈ ${deliveryTime}</span>
+          <span style="margin-left:8px;">Доставка ≈ ${deliveryTime}</span>
         `;
                 }
             }
