@@ -362,9 +362,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const durationObj = route.getDuration();
 
-                if (durationObj && typeof durationObj.value === 'number') {
+                if (durationObj && durationObj.value) {
 
-                    const rawDuration = durationObj.value;
+                    const rawDuration = Number(durationObj.value);
                     const rawDistance = route.getLength();
 
                     const km = rawDistance / 1000;
@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (meta) {
                     meta.innerHTML = `
           <span>${distance}</span>
-          <span style="margin-left:8px;">Доставка: ${deliveryTime}</span>
+          <span style="margin-left:8px;">Доставка≈ ${deliveryTime}</span>
         `;
                 }
             }
