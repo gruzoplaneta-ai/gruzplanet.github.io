@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const minDays = baseDays + minAdd;
             const maxDays = baseDays + maxAdd;
 
-            deliveryTime = `${minDays}–${maxDays} дней`;
+            deliveryTime = `${minDays}–${maxDays} дн.`;
 
 
             // вставка
