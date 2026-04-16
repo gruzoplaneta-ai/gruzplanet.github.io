@@ -353,24 +353,36 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             map.geoObjects.add(route);
-
             // ======================
-            // 🔥 DELIVERY + DISTANCE (SMART)
+            // 🔥 DELIVERY + DISTANCE (FINAL WORKING)
             // ======================
 
+            // расстояние
             const rawDistance = route.getLength(); // метры
-            const durationObj = route.getDuration();
-            const rawDuration = durationObj && durationObj.value ? durationObj.value : 0;
+            const distance = route.getHumanLength(); // "2 450 км"
 
+            // безопасно получаем duration
+            const durationObj = route.getDuration();
+            let rawDuration = 0;
+
+            if (durationObj && typeof durationObj.value === 'number') {
+                rawDuration = durationObj.value;
+            }
+
+            // км
             const km = rawDistance / 1000;
+
+            // базовые дни
             let baseDays;
 
             if (rawDuration > 0) {
                 baseDays = Math.ceil(rawDuration / 86400);
             } else {
-                baseDays = Math.ceil(km / 700); // fallback
+                // fallback если API не дал время
+                baseDays = Math.ceil(km / 700);
             }
 
+            // логика логистики
             let minAdd = 1;
             let maxAdd = 2;
 
@@ -387,20 +399,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const deliveryTime = `${minDays}–${maxDays} дней`;
 
-            const distance = route.getHumanLength();
+            // ======================
+            // ВСТАВКА В КАРТОЧКУ
+            // ======================
 
-            const activeCard = document.querySelector('.route.active');
+            // 🔥 ВАЖНО: ищем активную карточку именно среди routes
+            const activeCard = document.querySelector('.routes__list .route.active');
 
-            if (activeCard) {
-                const meta = activeCard.querySelector('.meta');
+            if (!activeCard) {
+                console.log('NO ACTIVE CARD');
+                return;
+            }
 
-                if (meta) {
-                    meta.innerHTML = `
+            const meta = activeCard.querySelector('.meta');
+
+            if (!meta) {
+                console.log('NO META BLOCK');
+                return;
+            }
+
+            // 🔥 очищаем перед вставкой (важно при кликах)
+            meta.innerHTML = '';
+
+            meta.innerHTML = `
   <span>${distance}</span>
   <span style="margin-left:8px;">Доставка: ${deliveryTime}</span>
 `;
-                }
-            }
 
         }).catch(err => {
             console.log('ROUTE ERROR:', err);
