@@ -270,45 +270,70 @@ document.addEventListener("DOMContentLoaded", () => {
             parent.classList.toggle('active');
         });
     });
-    ymaps.ready(init);
+
+    // ======================
+    // YANDEX MAP (STABLE)
+    // ======================
 
     let map;
     let currentRoute;
 
+    ymaps.ready(init);
+
     function init() {
+
         map = new ymaps.Map("map", {
-            center: [55.75, 37.61],
+            center: [55.75, 37.61], // Москва
             zoom: 5,
             controls: []
         });
 
-        const first = document.querySelector('.route.active');
-        buildRoute(first.dataset.route);
+        const routes = document.querySelectorAll('.route');
 
-        document.querySelectorAll('.route').forEach(item => {
+        // 🔥 обработка кликов
+        routes.forEach(item => {
             item.addEventListener('click', () => {
 
-                document.querySelectorAll('.route').forEach(i => i.classList.remove('active'));
+                routes.forEach(i => i.classList.remove('active'));
                 item.classList.add('active');
 
                 buildRoute(item.dataset.route);
             });
         });
+
+        // 🔥 первый маршрут при загрузке
+        const first = document.querySelector('.route.active') || routes[0];
+
+        if (first) {
+            buildRoute(first.dataset.route);
+        }
     }
+
+    // ======================
+    // BUILD ROUTE
+    // ======================
 
     function buildRoute(routeString) {
 
+        if (!routeString || !map) return;
+
+        // удаляем предыдущий маршрут
         if (currentRoute) {
             map.geoObjects.remove(currentRoute);
         }
 
+        // 🔥 КЛЮЧЕВАЯ СТРОКА (НЕ ТРОГАТЬ)
         const points = routeString.split(',').map(p => p.trim());
+
+        console.log('points:', points);
+
         ymaps.route(points, {
             mapStateAutoApply: true
         }).then(route => {
 
             currentRoute = route;
 
+            // стиль линии
             route.getPaths().options.set({
                 strokeColor: '#c89b3c',
                 strokeWidth: 4,
@@ -317,8 +342,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             map.geoObjects.add(route);
 
+        }).catch(err => {
+            console.log('ROUTE ERROR:', err);
         });
     }
-
 
 });

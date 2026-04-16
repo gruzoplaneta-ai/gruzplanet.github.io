@@ -1583,7 +1583,7 @@ body {
 }
 
 .routes {
-  padding: 120px 0;
+  padding: 180px 0 120px;
   background: #f5f7fa;
 }
 
@@ -1598,10 +1598,27 @@ body {
 }
 
 .routes__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.9;
   font-size: 12px;
   letter-spacing: 1px;
-  color: #c89b3c;
-  margin-bottom: 12px;
+  text-transform: uppercase;
+
+  color: #9aa3ad;
+  margin-bottom: 14px;
+}
+
+/* точка */
+.routes__label span {
+  width: 6px;
+  height: 6px;
+
+  background: #c89b3c;
+  border-radius: 50%;
+
+  display: inline-block;
 }
 
 .routes__title {
@@ -1643,6 +1660,43 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  padding-right: 6px;
+  position: relative;
+}
+
+.routes__list::after {
+  content: "";
+  position: sticky;
+  bottom: 0;
+
+  height: 40px;
+  width: 100%;
+
+  background: linear-gradient(to bottom, transparent, #f5f7fa);
+  pointer-events: none;
+}
+
+/* Chrome / Edge */
+.routes__list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.routes__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.routes__list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+/* Firefox */
+.routes__list {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
 
 .route {
