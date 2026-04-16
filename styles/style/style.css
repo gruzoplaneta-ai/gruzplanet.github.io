@@ -1982,6 +1982,9 @@ body {
     height: 70px;
   }
 
+  .header.scrolled .logo img {
+    height: 70px;
+  }
 
   .nav {
     display: none;
@@ -2149,7 +2152,7 @@ body {
   }
 
   .approach {
-    padding: 80px 0 80px;
+    padding: 80px 0 0;
   }
 
   /* ❗ убираем наложение */
@@ -2169,6 +2172,88 @@ body {
 
   .approach-item:last-child {
     border-bottom: none;
+  }
+
+  .routes__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* карта */
+  .routes__map {
+    height: 260px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  /* список → в горизонталь */
+  .routes__list {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+
+    scroll-snap-type: x mandatory;
+  }
+
+  .routes__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* карточки */
+  .route {
+    min-width: 240px;
+    flex: 0 0 auto;
+
+    scroll-snap-align: start;
+
+    padding: 16px;
+    border-radius: 16px;
+
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .route.active {
+    border: 1px solid rgba(200, 155, 60, 0.4);
+    background: rgba(200, 155, 60, 0.08);
+  }
+
+  .routes {
+    padding-top: 70px;
+
+  }
+
+  /* кнопка */
+  .routes__bottom {
+    margin-top: 25px;
+    text-align: center;
+  }
+
+  .routes__bottom p {
+    text-align: center;
+  }
+
+  .btn-primary {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .routes__title {
+    font-size: 28px;
+  }
+
+  .routes__subtitle {
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .routes__right {
+    display: none;
   }
 }
 
