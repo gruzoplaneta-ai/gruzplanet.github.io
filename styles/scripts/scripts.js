@@ -302,8 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
             map.geoObjects.remove(currentRoute);
         }
 
-        const points = routeString.split(',');
-
+        const points = routeString.split(',').map(p => p.trim());
         ymaps.route(points, {
             mapStateAutoApply: true
         }).then(route => {
