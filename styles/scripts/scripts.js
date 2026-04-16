@@ -359,10 +359,17 @@ document.addEventListener("DOMContentLoaded", () => {
             // ======================
 
             const rawDistance = route.getLength(); // метры
-            const rawDuration = route.getDuration().value; // секунды
+            const durationObj = route.getDuration();
+            const rawDuration = durationObj && durationObj.value ? durationObj.value : 0;
 
             const km = rawDistance / 1000;
-            const baseDays = Math.ceil(rawDuration / 86400);
+            let baseDays;
+
+            if (rawDuration > 0) {
+                baseDays = Math.ceil(rawDuration / 86400);
+            } else {
+                baseDays = Math.ceil(km / 700); // fallback
+            }
 
             let minAdd = 1;
             let maxAdd = 2;
@@ -389,9 +396,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (meta) {
                     meta.innerHTML = `
-                    <span>${distance}</span>
-                    <span style="margin-left:8px;">Доставка: ${deliveryTime}</span>
-                `;
+  <span>${distance}</span>
+  <span style="margin-left:8px;">Доставка: ${deliveryTime}</span>
+`;
                 }
             }
 
