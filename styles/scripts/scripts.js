@@ -379,15 +379,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             // логистика
-            let minAdd = 1;
-            let maxAdd = 2;
+            let minAdd = 0;
+            let maxAdd = 1;
 
             if (km > 1500 && km <= 4000) {
+                minAdd = 1;
+                maxAdd = 2;
+            } else if (km > 4000) {
                 minAdd = 2;
                 maxAdd = 3;
-            } else if (km > 4000) {
-                minAdd = 3;
-                maxAdd = 5;
             }
 
             const minDays = baseDays + minAdd;
