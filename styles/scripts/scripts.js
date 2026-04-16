@@ -349,48 +349,60 @@ document.addEventListener("DOMContentLoaded", () => {
             map.geoObjects.add(route);
 
             // ======================
-            // 🔥 ВОТ ТУТ МАГИЯ
+            // 🔥 SAFE DELIVERY BLOCK
             // ======================
 
+            // расстояние ВСЕГДА
             const distance = route.getHumanLength();
 
-            // пробуем получить точное время
-            let deliveryTime = route.getHumanTime(); // fallback (если вдруг что)
+            // по умолчанию — старое время
+            let deliveryTime = route.getHumanTime();
 
-            const durationObj = route.getDuration();
+            try {
 
-            if (durationObj && durationObj.value) {
+                const durationObj = route.getDuration();
 
-                const rawDuration = durationObj.value;
-                const rawDistance = route.getLength();
+                if (durationObj && typeof durationObj.value === 'number') {
 
-                const km = rawDistance / 1000;
-                const baseDays = Math.ceil(rawDuration / 86400);
+                    const rawDuration = durationObj.value;
+                    const rawDistance = route.getLength();
 
-                let minAdd = 1;
-                let maxAdd = 2;
+                    const km = rawDistance / 1000;
+                    const baseDays = Math.ceil(rawDuration / 86400);
 
-                if (km > 1500 && km <= 4000) {
-                    minAdd = 2;
-                    maxAdd = 3;
-                } else if (km > 4000) {
-                    minAdd = 3;
-                    maxAdd = 5;
+                    let minAdd = 1;
+                    let maxAdd = 2;
+
+                    if (km > 1500 && km <= 4000) {
+                        minAdd = 2;
+                        maxAdd = 3;
+                    } else if (km > 4000) {
+                        minAdd = 3;
+                        maxAdd = 5;
+                    }
+
+                    const minDays = baseDays + minAdd;
+                    const maxDays = baseDays + maxAdd;
+
+                    deliveryTime = `${minDays}–${maxDays} дней`;
                 }
 
-                const minDays = baseDays + minAdd;
-                const maxDays = baseDays + maxAdd;
-
-                deliveryTime = `${minDays}–${maxDays} дней`;
+            } catch (e) {
+                console.log('DELIVERY CALC ERROR:', e);
             }
 
+            // вставка
             const activeCard = document.querySelector('.route.active');
-            const meta = activeCard.querySelector('.meta');
 
-            if (meta) {
-                meta.innerHTML = `
-              <span>${distance}</span> • ${deliveryTime}
-            `;
+            if (activeCard) {
+                const meta = activeCard.querySelector('.meta');
+
+                if (meta) {
+                    meta.innerHTML = `
+          <span>${distance}</span>
+          <span style="margin-left:8px;">Доставка: ${deliveryTime}</span>
+        `;
+                }
             }
 
         }).catch(err => {
